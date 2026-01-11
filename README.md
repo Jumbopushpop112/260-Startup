@@ -1,7 +1,7 @@
 # Slime Webpage
 [My Notes](notes.md) 
 
-I love slime, and especially the green kind on ghosts.
+Slime is a website that allows you to communicate with your friends! It's free and is a lot of fun!
 
 > [!NOTE]
 > This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
@@ -17,7 +17,7 @@ I love slime, and especially the green kind on ghosts.
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] Proper use of Markdown
-- [ ] A concise and compelling elevator pitch
+- [ ] A concise and compelling elevator pitch 
 - [ ] Description of key features
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
