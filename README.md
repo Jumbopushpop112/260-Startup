@@ -49,12 +49,12 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
-- **React** - Description here
-- **Service** - Description here
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **HTML** - HTML will be used to create the user interface of the website, which will include a varierty of input tags, buttons, and images.
+- **CSS** - CSS will be used to create the style for the webpage. It will make the webiste look visually appealing
+- **React** - React will be used to make the website interactable for a user.
+- **Service** - Backend services will be used to make sure that mesasges are properly transmitted over the server. 
+- **DB/Login** - User login information and messages will be stored in a database for each particular user.
+- **WebSocket** - When the user goes to the website, a websocket will send a server request to connect so the user can send messages.
 
 ## 🚀 AWS deliverable
 
