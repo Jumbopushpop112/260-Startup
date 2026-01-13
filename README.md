@@ -24,7 +24,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Elevator pitch
 
-Have you ever wanted a fun way to chat with your friends? That's what slime is all about it! You can text your friends using this fun and free site! No monthly fees, no payments neccessary to chat with your friends! Enjoy the neccesity of sending as many free messages as you would like. Slime is a fun way for you to connect with friends and share memories together!    
+Have you ever wanted a fun way to chat with your friends? That's what slime is all about it! You can text your friends using this fun and free site! No monthly fees, no payments neccessary to chat with your friends! Enjoy the neccesity of sending as many free messages as you would like. Slime is a fun way for you to connect with friends and share memories together! Get started today!     
 
 ### Design
 
