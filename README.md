@@ -41,9 +41,9 @@ sequenceDiagram
 
 ### Key features
 
-- Describe your key feature
-- Describe your key feature
-- Describe your key feature
+- Free messaging with friends
+- Add friends by their username
+- You can post updates on your status 
 
 ### Technologies
 
