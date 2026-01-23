@@ -63,21 +63,22 @@ I am going to use the required technologies in the following ways.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Server deployed and accessible with custom domain name** - [My server link](https://yourdomainnamehere.click).
+- [X] **Server deployed and accessible with custom domain name** - [My server link](https://startup.slimestartup.click/).
+Website is accessible
 
 ## 🚀 HTML deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [X] **HTML pages** - HTML pages representing home, faqs, and scores
+- [X] **Proper HTML element usage** - HTML elemtents are used appropriately to represent forms, lists, and other elements
+- [X] **Links** - Links to the Github repository on each page
+- [X] **Text** - Text elements on each page specify what is found 
+- [X] **3rd party API placeholder** - Found on Home Page, will give the user suggested friends to add.  
+- [X] **Images** - Background image and image on about section
+- [X] **Login placeholder** - Found on Home Page, user will login
+- [X] **DB data placeholder** - Found on About Page, will contain the users messages
+- [X] **WebSocket placeholder** -Found on Scores Page, will keep track of unread messages.
 
 ## 🚀 CSS deliverable
 
@@ -98,7 +99,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Components** - I did not complete this part of the deliverable.
 - [ ] **Router** - I did not complete this part of the deliverable.
 
-## 🚀 React part 2: Reactivity deliverable
+## 🚀 React part 2: Reactivity deliverable  
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
