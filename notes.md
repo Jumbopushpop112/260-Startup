@@ -5,9 +5,9 @@
 Deployment Script (each time I save the website)
 ./deployFiles.sh -k ../developer.pem -h slimestartup.click -s simon
 Copy each path each time from file explorer  
-
+I was sick, so am recovering!
 ## Helpful links
-
+ 
 - [Course instruction](https://github.com/webprogramming260)
 - [Canvas](https://byu.instructure.com)
 - [MDN](https://developer.mozilla.org) 
