@@ -5,7 +5,7 @@
 Deployment Script (each time I save the website)
 ./deployFiles.sh -k ../developer.pem -h slimestartup.click -s simon
 Copy each path each time from file explorer  
-Got JS up and running for my program! 
+Got JS up and running for my program!  
 ## Helpful links
  
 - [Course instruction](https://github.com/webprogramming260)
@@ -37,6 +37,8 @@ This took a couple hours to get it how I wanted. It was important to make it res
 Bootstrap seems a bit like magic. It styles things nicely, but is very opinionated. You either do, or you do not. There doesn't seem to be much in between.
 
 I did like the navbar it made it super easy to build a responsive header.
+
+I imported my own font! 
 
 ```html
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
