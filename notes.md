@@ -43,6 +43,7 @@ Changed the styling of most basic elements
 Added pseudo class elements 
 Added date and time items
 Modified CSS items 
+Edited the properties a bit  
 
 ```html
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
