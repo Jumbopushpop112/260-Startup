@@ -41,6 +41,8 @@ I did like the navbar it made it super easy to build a responsive header.
 I imported my own font!
 Changed the styling of most basic elements  
 Added pseudo class elements 
+Added date and time items
+ 
 
 ```html
       <nav class="navbar navbar-expand-lg bg-body-tertiary">
