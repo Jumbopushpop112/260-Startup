@@ -49,7 +49,11 @@ In the future, READ everything on the website!
 
 
 ## React Part 1: Routing
-
+const Hellox = () =>{
+  return <div>Hello JKB!</div>;
+};
+const root = ReactDOM.createRoot(document.querySelector("#root"));
+root.render(<Hellox />);   
 
 
 ## React Part 2: Reactivity
