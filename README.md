@@ -89,7 +89,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **All visual elements styled using CSS** - CSS is used to style  
 - [X] **Responsive to window resizing using flexbox and/or grid display** - WIndow is displayed properly when resizing
 - [X] **Use of a imported font** - Font downloaded and imported from DaFont.com 
-- [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Approrpirate items are found in the CSS file 
+- [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Approrpirate items are found in the CSS file  
 
 ## 🚀 React part 1: Routing deliverable
 
