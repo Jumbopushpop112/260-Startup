@@ -55,6 +55,52 @@ const Hellox = () =>{
 const root = ReactDOM.createRoot(document.querySelector("#root"));
 root.render(<Hellox />);   
 
+import React from "https://esm.sh/react";
+import ReactDOM from "https://esm.sh/react-dom/client";
+import {
+  BrowserRouter,
+  NavLink,
+  Routes,
+  Navigate,
+  Route
+} from "https://esm.sh/react-router-dom";
+
+function Page({ color }) {
+  return (
+    <div className="page" style={{ backgroundColor: color }}>
+      <h1>{color}</h1>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <div className="app">
+        <nav>
+          <NavLink to="/">Red</NavLink>
+          <NavLink to="/green">Green</NavLink>
+          <NavLink to="/blue">Blue</NavLink>
+          <NavLink to="/orange">Orange</NavLink>
+        </nav>
+
+        <main>
+          <Routes>
+            <Route path="/" element={<Page color="red" />} exact />
+            <Route path="/green" element={<Page color="green" />} />
+            <Route path="/blue" element={<Page color="blue" />} />
+            <Route path="/orange" element={<Page color="orange" />} />
+          </Routes>
+        </main>
+      </div>
+    </BrowserRouter>
+  );
+} 
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+
+
 
 ## React Part 2: Reactivity
 
