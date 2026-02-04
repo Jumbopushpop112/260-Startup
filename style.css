@@ -1,0 +1,76 @@
+button:hover{ 
+    color:blue;  
+}
+a{
+    color:black;  
+}
+body {
+  margin: 0;
+  min-height: 100vh;    
+  background-image: url("slime.png");  
+  background-size: cover;          
+  background-position: center center;      
+  background-repeat: no-repeat; 
+
+  font-family: myFont;  
+}
+
+@font-face {
+   font-family: myFont;
+   src: url(Skynight.otf);  
+   font-weight: bold; 
+}
+login {
+    width: 400px;           
+    padding: 40px;          
+    font-size: 18px;        
+    margin: 50px auto;       
+    background-color: #f0f0f0; 
+    border: 2px solid #333;    
+    border-radius: 10px;        
+}
+
+#login input { 
+    width: 50%;                
+    padding: 10px;           
+    font-size: 16px;         
+    margin-top: 5px;
+}
+ 
+#login button {
+    padding: 10px 10px;       
+    font-size: 16px;         
+    margin-top: 5px; 
+}
+#navigationList a{ 
+    font-size: 25px;  
+    color: black;   
+}
+#navigationList a:hover{ 
+    color:blue;  
+}
+.text-reset{
+    font-size: 25px;  
+}
+button{
+    border-radius: 12px;   
+}
+main{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center; 
+}
+#liveClock{
+    font-size: 25px;  
+}
+#date{
+    font-size: 25px;   
+}
+#description{
+    font-size: 25px;  
+} 
+.messages{  
+    width: 500px; 
+    padding: 10px;
+    height: 200px;    
+} 
