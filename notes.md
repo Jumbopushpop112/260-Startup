@@ -90,7 +90,7 @@ function App() {
             <Route path="/green" element={<Page color="green" />} />
             <Route path="/blue" element={<Page color="blue" />} />
             <Route path="/orange" element={<Page color="orange" />} />
-          </Routes>
+          </Routes> 
         </main>
       </div>
     </BrowserRouter>
