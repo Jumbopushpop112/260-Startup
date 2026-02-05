@@ -100,6 +100,7 @@ function App() {
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
 
+React Script Not Showing up
 
 
 ## React Part 2: Reactivity
