@@ -3,7 +3,7 @@
 [My startup - Simon](https://simon.cs260.click)
 
 Deployment Script (each time I save the website)
-./deployFiles.sh -k ../developer.pem -h slimestartup.click -s simon
+./deployFiles.sh -k ../developer.pem -h slimestartup.click -s startup
 Copy each path each time from file explorer  
 Got JS up and running for my program!  
 ## Helpful links
@@ -21,7 +21,7 @@ Launching my AMI I initially put it on a private subnet. Even though it had a pu
 
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md). 
 
-## HTML 
+## HTML  
 
 This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
 
