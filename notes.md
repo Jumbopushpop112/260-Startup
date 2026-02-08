@@ -38,7 +38,7 @@ Bootstrap seems a bit like magic. It styles things nicely, but is very opinionat
 
 I did like the navbar it made it super easy to build a responsive header.
 
-I imported my own font!
+I imported my own font! 
 Changed the styling of most basic elements  
 Added pseudo class elements 
 Added date and time items
