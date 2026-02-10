@@ -106,7 +106,7 @@ The hardest part of this deliverable was understanding how react works. It took 
 In the future, I am going to study react more deeply! 
 Just remember Matthew, you got this! Turn to the Lord for help. If a TA is reading this, Jesus Christ loves you! 
 
-## React Part 2: Reactivity
+## React Part 2: Reactivity  
 
 This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
 
