@@ -98,7 +98,7 @@ function App() {
 } 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+root.render(<App />); 
 
 I was able to deploy the appropriate things needed, but it took a lot of trial and error when routing my simon react. I learned a lot! 
 Remember to check back on the react simon example! 
