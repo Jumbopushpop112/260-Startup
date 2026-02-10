@@ -95,9 +95,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [X] **Components** - 
-- [ ] **Router** - I did not complete this part of the deliverable. 
+- [X] **Bundled using Vite** - All items have been bundled using vite. This wasn't too challenging. 
+- [X] **Components** - All CSS/HTML components have been converted via react. I am so amazed on how fascinating my files look!
+- [X] **Router** - All items have been routed via react. This part was challenging, but lots of fun! 
 
 ## 🚀 React part 2: Reactivity deliverable  
 
