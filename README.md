@@ -91,7 +91,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Use of a imported font** - Font downloaded and imported from DaFont.com 
 - [X] **Use of different types of selectors including element, class, ID, and pseudo selectors** - Approrpirate items are found in the CSS file   
 
-## 🚀 React part 1: Routing deliverable
+## 🚀 React part 1: Routing deliverable 
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
