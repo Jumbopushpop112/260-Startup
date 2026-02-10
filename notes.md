@@ -3,9 +3,9 @@
 [My startup - Simon](https://simon.cs260.click)
 
 Deployment Script (each time I save the website)
-./deployFiles.sh -k ../developer.pem -h slimestartup.click -s startup
+./deployReact.sh -k ../developer.pem -h slimestartup.click -s startup
 Copy each path each time from file explorer  
-Got JS up and running for my program!  
+Got JS up and running for my program!   
 ## Helpful links
  
 - [Course instruction](https://github.com/webprogramming260)
