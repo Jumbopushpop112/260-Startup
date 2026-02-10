@@ -97,7 +97,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 - [X] **Bundled using Vite** - All items have been bundled using vite. This wasn't too challenging. 
 - [X] **Components** - All CSS/HTML components have been converted via react. I am so amazed on how fascinating my files look!
-- [X] **Router** - All items have been routed via react. This part was challenging, but lots of fun! 
+- [X] **Router** - All items have been routed via react. This part was challenging, but lots of fun!  
 
 ## 🚀 React part 2: Reactivity deliverable  
 

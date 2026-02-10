@@ -104,6 +104,7 @@ I was able to deploy the appropriate things needed, but it took a lot of trial a
 Remember to check back on the react simon example! 
 The hardest part of this deliverable was understanding how react works. It took a while to be able to make everything work, and for everything to perform alright, but I was able to do it via hard work and dedication.
 In the future, I am going to study react more deeply! 
+Just remember Matthew, you got this! Turn to the Lord for help. If a TA is reading this, Jesus Christ loves you! 
 
 ## React Part 2: Reactivity
 
