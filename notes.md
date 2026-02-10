@@ -82,7 +82,7 @@ function App() {
           <NavLink to="/green">Green</NavLink>
           <NavLink to="/blue">Blue</NavLink>
           <NavLink to="/orange">Orange</NavLink>
-        </nav>
+        </nav> 
 
         <main>
           <Routes>
