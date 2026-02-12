@@ -109,6 +109,7 @@ import React from "https://esm.sh/react";
 import ReactDOM from "https://esm.sh/react-dom/client";
 
 function App() {
+//array returned with the current color, and the updated color
   const [color, updateColor] = React.useState("#737AB0");
 
   return (
@@ -143,7 +144,7 @@ function ColorPicker({ color, updateColor }) {
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);
-Pay close attention to what each chooses to do 
+Pay close attention to what each line chooses to do
 
 
 ## React Part 2: Reactivity  
