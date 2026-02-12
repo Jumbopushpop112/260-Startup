@@ -105,7 +105,45 @@ Remember to check back on the react simon example!
 The hardest part of this deliverable was understanding how react works. It took a while to be able to make everything work, and for everything to perform alright, but I was able to do it via hard work and dedication.
 In the future, I am going to study react more deeply! 
 Just remember Matthew, you got this! Turn to the Lord for help. If a TA is reading this, Jesus Christ loves you! 
+import React from "https://esm.sh/react";
+import ReactDOM from "https://esm.sh/react-dom/client";
 
+function App() {
+  const [color, updateColor] = React.useState("#737AB0");
+
+  return (
+    <div>
+      <h1>Pick a color</h1>
+      <ColorDisplay color={color} />
+      <ColorPicker color={color} updateColor={updateColor} />
+    </div>
+  );
+}
+
+function ColorDisplay({ color }) {
+  return (
+    <div>
+      Your color: <span style={{ color: color }}>{color}</span>
+    </div>
+  );
+}
+
+function ColorPicker({ color, updateColor }) {
+  function onChange(e) {
+    updateColor(e.target.value);
+  }
+
+  return (
+    <div>
+      <span>Pick a color: </span>
+      <input type="color" onChange={onChange} value={color} />
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<App />);
+Pay close attention to what each chooses to do 
 
 
 ## React Part 2: Reactivity  
