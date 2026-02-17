@@ -149,5 +149,5 @@ Pay close attention to what each line chooses to do
 
 ## React Part 2: Reactivity  
 ./deployReact.sh -k ../../developer.pem -h slimestartup.click -s simon
-Deployed simon react     
+Deployed simon react      
 
