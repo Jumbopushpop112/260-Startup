@@ -1,5 +1,20 @@
-import React from 'react';
-export function Login() {
+import React,{ useEffect, useState } from 'react';
+export function Login() { 
+  const [time, setTime] = useState('');
+  const [date, setDate] = useState('');
+
+  useEffect(() => {
+    function updateTime() {
+      const now = new Date();
+      setTime(now.toLocaleTimeString());
+      setDate(now.toLocaleDateString());
+    } 
+
+    updateTime(); // run immediately
+    const interval = setInterval(updateTime, 1000);
+
+    return () => clearInterval(interval); // cleanup
+  }, []); 
   return ( 
       <main className="container-fluid bg-secondary text-center">
       <div id="login"> 
@@ -29,9 +44,9 @@ export function Login() {
       <br /> 
        <input type="text" placeholder="3rd Party API will show suggested friends here" /> 
        <br />   
-      <time id="liveClock"></time>
-      <p id="date"></p>   
+      <time>{time}</time>
+      <p>{date}</p>    
     </footer> 
-    </main> 
+    </main>
     );  
 } 

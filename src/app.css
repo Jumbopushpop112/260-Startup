@@ -27,8 +27,9 @@ login {
     margin: 50px auto;       
     background-color: #f0f0f0; 
     border: 2px solid #333;    
-    border-radius: 10px;        
-}
+    border-radius: 10px;
+        
+} 
 
 #login input { 
     width: 50%;                
@@ -36,7 +37,6 @@ login {
     font-size: 16px;         
     margin-top: 5px;
 }
- 
 #login button {
     padding: 10px 10px;       
     font-size: 16px;         
