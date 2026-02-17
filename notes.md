@@ -108,5 +108,5 @@ Just remember Matthew, you got this! Turn to the Lord for help. If a TA is readi
 
 ## React Part 2: Reactivity  
 ./deployReact.sh -k ../../developer.pem -h slimestartup.click -s simon
-Deployed simon react  
+Deployed simon react    
 
