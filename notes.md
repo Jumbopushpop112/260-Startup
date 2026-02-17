@@ -107,27 +107,6 @@ In the future, I am going to study react more deeply!
 Just remember Matthew, you got this! Turn to the Lord for help. If a TA is reading this, Jesus Christ loves you! 
 
 ## React Part 2: Reactivity  
+./deployReact.sh -k ../../developer.pem -h slimestartup.click -s simon
+Deployed simon react  
 
-This was a lot of fun to see it all come together. I had to keep remembering to use React state instead of just manipulating the DOM directly.
-
-Handling the toggling of the checkboxes was particularly interesting.
-
-```jsx
-<div className="input-group sound-button-container">
-  {calmSoundTypes.map((sound, index) => (
-    <div key={index} className="form-check form-switch">
-      <input
-        className="form-check-input"
-        type="checkbox"
-        value={sound}
-        id={sound}
-        onChange={() => togglePlay(sound)}
-        checked={selectedSounds.includes(sound)}
-      ></input>
-      <label className="form-check-label" htmlFor={sound}>
-        {sound}
-      </label>
-    </div>
-  ))}
-</div>
-```
