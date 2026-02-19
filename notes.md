@@ -152,7 +152,7 @@ Pay close attention to what each line chooses to do
 Deployed simon react script
 arrow functions are used to create lamba functions
 they make anonymous function calls  
-setTimeout() - Used for time, 5000 - 5 seconds (multiply seconds by 1000) 
+setTimeout() - Used for time, 5000 - 5 seconds (multiply seconds by 1000)  
 
 ## Startup Service
 
