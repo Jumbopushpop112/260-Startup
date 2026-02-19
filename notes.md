@@ -160,6 +160,7 @@ x.then(r=>console.log(r));
 y = x.then(r ==> r.json()); 
 y.then((t) =. console.log(t.author)); 
 a = await fectch(URL); 
+b = await a.json(); 
 ## Startup Service 
 
 ## Startup DB 
