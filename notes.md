@@ -155,6 +155,8 @@ they make anonymous function calls
 setTimeout() - Used for time, 5000 - 5 seconds (multiply seconds by 1000) 
 setTimeOut will call after the specified time (asyncronous order)  
 new Promsise() - coming back to do something  
+x = fetch(URL);
+x.then(r=>console.log(r)); 
 
 ## Startup Service
 
