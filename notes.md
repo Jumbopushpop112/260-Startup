@@ -157,7 +157,7 @@ setTimeOut will call after the specified time (asyncronous order)
 new Promsise() - coming back to do something  
 x = fetch(URL);
 x.then(r=>console.log(r)); 
-y.then((t) =. console.log(t)); 
+y.then((t) =. console.log(t.author));  
 ## Startup Service
 
 ## Startup DB 
