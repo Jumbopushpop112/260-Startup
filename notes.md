@@ -150,7 +150,8 @@ Pay close attention to what each line chooses to do
 ## React Part 2: Reactivity  
 ./deployReact.sh -k ../../developer.pem -h slimestartup.click -s simon
 Deployed simon react script
-arrow functions are used to create lamba functions 
+arrow functions are used to create lamba functions
+they make anonymous function calls  
 
 ## Startup Service
 
