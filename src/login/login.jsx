@@ -11,21 +11,26 @@ export function Login() {
       const now = new Date();
       setTime(now.toLocaleTimeString());
       setDate(now.toLocaleDateString());
-    } 
+    }   
 
     updateTime(); // run immediately
     const interval = setInterval(updateTime, 1000);
    
     return () => clearInterval(interval); // cleanup
-  }, []); 
+   }, []); 
    function Login(event){ 
       event.preventDefault();
-      accountExists = true; 
-      if(localStorage.getItem(username) === null){
-        console.log("Username does not exist. Try again.");  
+      const users = JSON.parse(localStorage.getItem("Users"));
+      //is the user in our system? 
+      const validUser = users.find(
+        (user) => user.username === username && user.password === password
+      );
+      if(!validUser){
+        alert("Error: Check the username and password, and try again."); 
+        return  
       }
       console.log("Username:", username);
-      console.log("Password:", password);   
+      console.log("Password:", password);    
       setIsLoggedIn(true);   
     }
     function createAccount(event){
