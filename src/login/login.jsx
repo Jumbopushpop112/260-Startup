@@ -49,7 +49,7 @@ export function Login() {
     }
     function Logout(event){
       event.preventDefault();  
-      setIsLoggedIn(false); 
+      setIsLoggedIn(false);  
     }
   return ( 
       <main className="container-fluid bg-secondary text-center">
