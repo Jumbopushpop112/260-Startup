@@ -4,7 +4,7 @@ export function Login() {
   const [date, setDate] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState(''); 
-  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  var [isLoggedIn, setIsLoggedIn] = useState(false);  
 
   useEffect(() => {
     function updateTime() {
@@ -14,38 +14,42 @@ export function Login() {
     }   
 
     updateTime(); // run immediately
-    const interval = setInterval(updateTime, 1000);
-   
+    const interval = setInterval(updateTime, 1000);   
     return () => clearInterval(interval); // cleanup
    }, []); 
-   function Login(event){ 
+   function userLogin(event){ 
       event.preventDefault();
       const users = JSON.parse(localStorage.getItem("Users"));
       //is the user in our system? 
       const validUser = users.find(
         (user) => user.username === username && user.password === password
-      );
+      ); 
       if(!validUser){
         alert("Error: Check the username and password, and try again."); 
         return  
       }
       console.log("Username:", username);
-      console.log("Password:", password);    
+      console.log("Password:", password);     
       setIsLoggedIn(true);   
     }
     function createAccount(event){
+      event.preventDefault(); 
       const users = JSON.parse(localStorage.getItem("Users")) || [];  
       const isIncluded = users.some(
         (user) => user.username === username
       );  
-      if(isIncluded){ 
-        console.log("Oops! Username is taken"); 
+      if(isIncluded){  
         alert("Username is taken!"); 
+        return; 
       }else{
-        users.push({username, password});  
-      localStorage.setItem("Users",JSON.stringify(users));
+        users.push({username, password});   
+        localStorage.setItem("Users",JSON.stringify(users));
       }
        
+    }
+    function Logout(event){
+      event.preventDefault();  
+      setIsLoggedIn(false); 
     }
   return ( 
       <main className="container-fluid bg-secondary text-center">
@@ -63,8 +67,9 @@ export function Login() {
           <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} /> 
         </div> 
         <br /> 
-        <button type="button" onClick={(event) => Login(event)}>Login</button>       
-        <button type="button" onClick={(event) => createAccount(event)}>Create Account</button>
+        <button type="button" onClick={(event) => userLogin(event)}>Login</button>        
+        {!isLoggedIn && <button type="button" onClick={(event) => createAccount(event)}>Create Account</button>} 
+        {isLoggedIn && <button type="button" onClick={(event) => Logout(event)}>Logout</button>} 
       </form>
       </div> 
     <footer id="navigationList"> 
