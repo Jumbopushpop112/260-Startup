@@ -163,5 +163,8 @@ a = await fectch(URL);
 b = await a.json(); 
 ## Startup Service 
 git bash command line - curl https:// website 
-## Startup DB 
+fetch(url)
+  .then(r => r.json())
+  .then(j => console.log(j.value)) 
+## Startup DB  
 
