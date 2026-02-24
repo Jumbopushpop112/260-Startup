@@ -170,6 +170,6 @@ fetch(url)
 2nd Way
 const r = await fetch("https://quote.cs260.click");
 const j = await r.json();
-console.log(j) 
+console.log(j)  
 ## Startup DB  
 
