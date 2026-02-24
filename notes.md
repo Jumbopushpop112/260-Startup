@@ -171,21 +171,14 @@ fetch(url)
 const r = await fetch("https://quote.cs260.click");
 const j = await r.json();
 console.log(j)  
-PORT REQUESTS
- 20
-File Transfer Protocol (FTP) for data transfer
-22 
-Secure Shell (SSH) for connecting to remote devices
-25
-Simple Mail Transfer Protocol (SMTP) for sending email
-53
-Domain Name System (DNS) for looking up IP addresses
-80
-Hypertext Transfer Protocol (HTTP) for web requests
-123
-Network Time Protocol (NTP) for managing time
-443
-HTTP Secure (HTTPS) for secure web requests
+PORT REQUESTS 
+20- File Transfer Protocol (FTP) for data transfer
+22- Secure Shell (SSH) for connecting to remote devices
+25- Simple Mail Transfer Protocol (SMTP) for sending email
+53- Domain Name System (DNS) for looking up IP addresses
+80- Hypertext Transfer Protocol (HTTP) for web requests
+123- Network Time Protocol (NTP) for managing time
+443- HTTP Secure (HTTPS) for secure web requests
 
 ## Startup DB  
 
