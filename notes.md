@@ -179,6 +179,11 @@ PORT REQUESTS
 80- Hypertext Transfer Protocol (HTTP) for web requests
 123- Network Time Protocol (NTP) for managing time
 443- HTTP Secure (HTTPS) for secure web requests
-
+HTTP Methods
+GET - Get a resource
+POST - Create a resource
+PUT - Update a resource
+DELETE - Delete a resource
+OPTIONS - Information about a resource 
 ## Startup DB  
 
