@@ -1,15 +1,24 @@
 import React,{ useEffect, useState } from 'react'; 
-export function About() {  
-  const [joinDate, setUserJoinDate] = useState(''); 
-  function logJoinDate(){      
-      const usersString = localStorage.getItem("users");
-    if (usersString) {
-      const currentUser = users.find(user => user.username); 
-      if (currentUser) {
-          setUserJoinDate(currentUser.joinDate); // Set the join date for the input
-      }  
-    }  
-  }
+export function About() {   
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [joinDate, setJoinDate] = useState("");
+  const [numberFriends, getFriends] = useState("");
+  
+
+  useEffect(() => {
+    const currentUsername = localStorage.getItem("currentUser");
+    setIsLoggedIn(!!currentUsername);
+
+    if (currentUsername) {
+      const users = JSON.parse(localStorage.getItem("Users")) || []; 
+      const currentUser = users.find(user => user.username === currentUsername);
+      if (currentUser) { 
+        setJoinDate(currentUser.joinDate);
+        getFriends(currentUser.numberFriends); 
+      } 
+    } 
+  }, []); // run once on mount
+
   return ( 
      <main>  
     <footer id="description">
@@ -19,9 +28,9 @@ export function About() {
       </p>
        <input type="text" placeholder="User Statistics" disabled/>   
        <br />    
-       <input type="text" placeholder="User Join Date:" value={joinDate} disabled/> 
-       <br /> 
-        <input type="text" placeholder="Number of Friends:" disabled/>           
+       <input type="text" placeholder="User Join Date:" value={isLoggedIn ? `User Join Date: ${joinDate}` : "Login To See Join Date"} disabled/>      
+       <br />  
+        <input type="text" placeholder="Number of Friends:" value ={isLoggedIn ? `Number of Friends: ${numberFriends}` : "Login To See Friends"}disabled/>            
        <br />  
        <br />      
       <a href="https://github.com/Jumbopushpop112/260-Startup">GitHub Repository Link</a>   

@@ -19,8 +19,7 @@ export default function App() {
           <li><NavLink to='messages'>Messages</NavLink></li> 
           <li><NavLink to='about'>About</NavLink></li>     
         </menu> 
-      </nav> 
-      <hr />   
+      </nav>      
     </header>
     <Routes>
         <Route path='/' element={<Login />} exact />

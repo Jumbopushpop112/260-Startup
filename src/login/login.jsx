@@ -16,10 +16,14 @@ export function Login() {
     updateTime(); // run immediately
     const interval = setInterval(updateTime, 1000);   
     return () => clearInterval(interval); // cleanup
-   }, []); 
+   }, []);  
    function userLogin(event){ 
       event.preventDefault();
       const users = JSON.parse(localStorage.getItem("Users"));
+      if(users === null){
+        alert("No users in database! Create an account."); 
+        return; 
+      }   
       //is the user in our system? 
       const validUser = users.find(
         (user) => user.username === username && user.password === password
@@ -35,10 +39,11 @@ export function Login() {
     }
     function createAccount(event){
       event.preventDefault(); 
-      const users = JSON.parse(localStorage.getItem("Users")) || [];  
+      const users = JSON.parse(localStorage.getItem("Users")) || []; 
+      
       const isIncluded = users.some( 
         (user) => user.username === username
-      );  
+      );   
       if(isIncluded){  
         alert("Username is taken!"); 
         return; 
@@ -47,7 +52,8 @@ export function Login() {
         users.push({
           username: username,  
           password: password,
-          joinDate: curDate.toLocaleDateString()
+          joinDate: curDate.toLocaleDateString(),
+          numberFriends: 0
         });  
         localStorage.setItem("Users",JSON.stringify(users));
       }
@@ -79,11 +85,10 @@ export function Login() {
         {isLoggedIn && <button type="button" onClick={(event) => Logout(event)}>Logout</button>} 
       </form>
       </div> 
-    <footer id="navigationList"> 
-      <hr />
+    <footer id="navigationList">  
       <span className="text-reset"><a href="mailto:matthewhart800@gmail.com">Contact Matthew Hart</a></span>   
       <br /> 
-      <br /> 
+      <br />  
       <a href="https://github.com/Jumbopushpop112/260-Startup" target="_blank">GitHub</a> 
       <br /> 
       <br /> 

@@ -162,6 +162,6 @@ y.then((t) =. console.log(t.author));
 a = await fectch(URL); 
 b = await a.json(); 
 ## Startup Service 
-
+git bash command line - curl https:// website 
 ## Startup DB 
 
