@@ -29,7 +29,8 @@ export function Login() {
         return  
       }
       console.log("Username:", username);
-      console.log("Password:", password);     
+      console.log("Password:", password); 
+      localStorage.setItem("currentUser",username);    
       setIsLoggedIn(true);   
     }
     function createAccount(event){
@@ -53,7 +54,8 @@ export function Login() {
        
     }
     function Logout(event){
-      event.preventDefault();  
+      event.preventDefault(); 
+      localStorage.removeItem("currentUser"); 
       setIsLoggedIn(false);  
     }
   return ( 

@@ -1,7 +1,15 @@
-import React from 'react'; 
-
-export function About() {
-
+import React,{ useEffect, useState } from 'react'; 
+export function About() {  
+  const [joinDate, setUserJoinDate] = useState(''); 
+  function logJoinDate(){      
+      const usersString = localStorage.getItem("users");
+    if (usersString) {
+      const currentUser = users.find(user => user.username); 
+      if (currentUser) {
+          setUserJoinDate(currentUser.joinDate); // Set the join date for the input
+      }  
+    }  
+  }
   return ( 
      <main>  
     <footer id="description">
@@ -11,7 +19,7 @@ export function About() {
       </p>
        <input type="text" placeholder="User Statistics" disabled/>   
        <br />    
-       <input type="text" placeholder="User Join Date:" disabled/> 
+       <input type="text" placeholder="User Join Date:" value={joinDate} disabled/> 
        <br /> 
         <input type="text" placeholder="Number of Friends:" disabled/>           
        <br />  
