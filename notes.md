@@ -162,9 +162,14 @@ y.then((t) =. console.log(t.author));
 a = await fectch(URL); 
 b = await a.json(); 
 ## Startup Service 
-git bash command line - curl https:// website 
+git bash command line - curl https:// website
+1st Way 
 fetch(url)
   .then(r => r.json())
   .then(j => console.log(j.value)) 
+2nd Way
+const r = await fetch("https://quote.cs260.click");
+const j = await r.json();
+console.log(j) 
 ## Startup DB  
 
