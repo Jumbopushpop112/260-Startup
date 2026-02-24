@@ -10,11 +10,10 @@ a{
   background-image: url("slime.png");  
   background-size: cover;          
   background-position: center center;      
-  background-repeat: no-repeat; 
-
+  background-repeat: no-repeat;  
   font-family: myFont;  
-}
-
+  color: black; 
+}  
 @font-face {
    font-family: myFont;
    src: url(Skynight.otf);  
@@ -30,7 +29,9 @@ login {
     border-radius: 10px;
         
 } 
-
+.FAQ{ 
+    font-size: 35px;    
+} 
 #login input { 
     width: 50%;                
     padding: 10px;           
@@ -43,7 +44,7 @@ login {
     margin-top: 5px; 
 }
 #navigationList a{ 
-    font-size: 25px;  
+    font-size: 25px;      
     color: black;   
 }
 #navigationList a:hover{ 

@@ -35,14 +35,19 @@ export function Login() {
     function createAccount(event){
       event.preventDefault(); 
       const users = JSON.parse(localStorage.getItem("Users")) || [];  
-      const isIncluded = users.some(
+      const isIncluded = users.some( 
         (user) => user.username === username
       );  
       if(isIncluded){  
         alert("Username is taken!"); 
         return; 
       }else{
-        users.push({username, password});   
+        const curDate = new Date();
+        users.push({
+          username: username,  
+          password: password,
+          joinDate: curDate.toLocaleDateString()
+        });  
         localStorage.setItem("Users",JSON.stringify(users));
       }
        
