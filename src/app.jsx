@@ -16,7 +16,7 @@ export default function App() {
         <menu>
           <li><NavLink to=''>Home</NavLink></li>   
           <li><NavLink to='faq'>FAQs</NavLink></li>  
-          <li><NavLink to='messages'>Messages</NavLink></li> 
+          <li><NavLink to='messages'>Message</NavLink></li> 
           <li><NavLink to='about'>About</NavLink></li>     
         </menu> 
       </nav>      

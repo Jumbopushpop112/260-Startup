@@ -12,7 +12,6 @@ a{
   background-position: center center;      
   background-repeat: no-repeat;  
   font-family: myFont;  
-  color: black; 
 }  
 @font-face {
    font-family: myFont;
@@ -55,6 +54,7 @@ login {
 }
 button{
     border-radius: 12px;   
+    font-size: 20px;    
 }
 main{
     display: flex;

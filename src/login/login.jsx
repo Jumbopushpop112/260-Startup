@@ -21,12 +21,8 @@ export function Login() {
     return () => clearInterval(interval); // cleanup
    }, []); 
    function userLogin(event){ 
-      event.preventDefault();
-      const users = JSON.parse(localStorage.getItem("Users"));
-      if(users === null){
-        alert("No users in database! Create an account."); 
-        return;  
-      }   
+      event.preventDefault(); 
+      const users = JSON.parse(localStorage.getItem("Users"));  
       //is the user in our system? 
       const validUser = users.find(
         (user) => user.username === username && user.password === password
@@ -43,13 +39,16 @@ export function Login() {
     function createAccount(event){
       event.preventDefault(); 
       const users = JSON.parse(localStorage.getItem("Users")) || []; 
-      
       const isIncluded = users.some(  
         (user) => user.username === username
       );   
+      if(username === ""){ 
+        alert("Can't sign up with a blank username");
+        return; 
+      }
       if(isIncluded){  
         alert("Username is taken!"); 
-        return; 
+        return;  
       }else{
         const curDate = new Date(); 
         users.push({

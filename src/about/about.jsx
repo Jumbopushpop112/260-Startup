@@ -3,7 +3,7 @@ export function About() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [joinDate, setJoinDate] = useState("");
   const [numberFriends, getFriends] = useState("");
-  const [username, getUsername] = useState("");
+  const [username, getUsername] = useState(""); 
 
   useEffect(() => {
     const currentUsername = localStorage.getItem("currentUser");
