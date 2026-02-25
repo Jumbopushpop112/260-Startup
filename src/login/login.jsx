@@ -2,10 +2,13 @@ import React,{ useEffect, useState } from 'react';
 export function Login() { 
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState(() => {
+    return localStorage.getItem("currentUser") || '';
+  }); 
   const [password, setPassword] = useState(''); 
-  var [isLoggedIn, setIsLoggedIn] = useState(false);  
-
+  const [isLoggedIn, setIsLoggedIn] = useState(() => {
+    return localStorage.getItem("currentUser") !== null;
+  });   
   useEffect(() => {
     function updateTime() {
       const now = new Date();
@@ -16,13 +19,13 @@ export function Login() {
     updateTime(); // run immediately
     const interval = setInterval(updateTime, 1000);   
     return () => clearInterval(interval); // cleanup
-   }, []);  
+   }, []); 
    function userLogin(event){ 
       event.preventDefault();
       const users = JSON.parse(localStorage.getItem("Users"));
       if(users === null){
         alert("No users in database! Create an account."); 
-        return; 
+        return;  
       }   
       //is the user in our system? 
       const validUser = users.find(
@@ -41,7 +44,7 @@ export function Login() {
       event.preventDefault(); 
       const users = JSON.parse(localStorage.getItem("Users")) || []; 
       
-      const isIncluded = users.some( 
+      const isIncluded = users.some(  
         (user) => user.username === username
       );   
       if(isIncluded){  
@@ -56,8 +59,7 @@ export function Login() {
           numberFriends: 0
         });  
         localStorage.setItem("Users",JSON.stringify(users));
-      }
-       
+      }  
     }
     function Logout(event){
       event.preventDefault(); 
@@ -68,8 +70,8 @@ export function Login() {
       <main className="container-fluid bg-secondary text-center">
       <div id="login"> 
           {isLoggedIn && <h1>Welcome, {username}!</h1>}
-          {!isLoggedIn && <h1>Welcome to Slime!</h1>}     
-      <form onSubmit={Login}> 
+          {!isLoggedIn && <h1>Welcome to Slime!</h1>}      
+      <form>  
         <div>
           <span style={{fontSize: '20px'}}>@</span>  
           <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)}/>   
@@ -80,7 +82,7 @@ export function Login() {
           <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} /> 
         </div> 
         <br /> 
-        <button type="button" onClick={(event) => userLogin(event)}>Login</button>        
+        {!isLoggedIn && <button type="button" onClick={(event) => userLogin(event)}>Login</button>}          
         {!isLoggedIn && <button type="button" onClick={(event) => createAccount(event)}>Create Account</button>} 
         {isLoggedIn && <button type="button" onClick={(event) => Logout(event)}>Logout</button>} 
       </form>

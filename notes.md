@@ -184,6 +184,6 @@ GET - Get a resource
 POST - Create a resource
 PUT - Update a resource
 DELETE - Delete a resource
-OPTIONS - Information about a resource 
+OPTIONS - Information about a resource  
 ## Startup DB  
 

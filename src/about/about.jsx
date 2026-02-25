@@ -3,7 +3,7 @@ export function About() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [joinDate, setJoinDate] = useState("");
   const [numberFriends, getFriends] = useState("");
-  
+  const [username, getUsername] = useState("");
 
   useEffect(() => {
     const currentUsername = localStorage.getItem("currentUser");
@@ -14,7 +14,8 @@ export function About() {
       const currentUser = users.find(user => user.username === currentUsername);
       if (currentUser) { 
         setJoinDate(currentUser.joinDate);
-        getFriends(currentUser.numberFriends); 
+        getFriends(currentUser.numberFriends);
+        getUsername(currentUser.username);  
       } 
     } 
   }, []); // run once on mount
@@ -28,12 +29,13 @@ export function About() {
       </p>
        <input type="text" placeholder="User Statistics" disabled/>   
        <br />    
+       <input type="text" placeholder="Username:" value ={isLoggedIn ? `Username: ${username}` : "Login To See Username"}disabled/>   
+       <br />
        <input type="text" placeholder="User Join Date:" value={isLoggedIn ? `User Join Date: ${joinDate}` : "Login To See Join Date"} disabled/>      
        <br />  
         <input type="text" placeholder="Number of Friends:" value ={isLoggedIn ? `Number of Friends: ${numberFriends}` : "Login To See Friends"}disabled/>            
-       <br />  
        <br />      
-      <a href="https://github.com/Jumbopushpop112/260-Startup">GitHub Repository Link</a>   
+      <a href="https://github.com/Jumbopushpop112/260-Startup">GitHub Repository Link</a>    
     </footer> 
     </main> 
     );  
