@@ -63,7 +63,7 @@ export function Login() {
     }
     function Logout(event){
       event.preventDefault(); 
-      localStorage.removeItem("currentUser"); 
+      localStorage.removeItem("currentUser");  
       setIsLoggedIn(false);  
     }
   return ( 
@@ -74,12 +74,12 @@ export function Login() {
       <form>  
         <div>
           <span style={{fontSize: '20px'}}>@</span>  
-          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)}/>   
+          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn}/>   
         </div>
         <br /> 
         <div>
           <span>🔒</span>
-          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} /> 
+          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} />  
         </div> 
         <br /> 
         {!isLoggedIn && <button type="button" onClick={(event) => userLogin(event)}>Login</button>}          

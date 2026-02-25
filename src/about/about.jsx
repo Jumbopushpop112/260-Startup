@@ -34,6 +34,7 @@ export function About() {
        <input type="text" placeholder="User Join Date:" value={isLoggedIn ? `User Join Date: ${joinDate}` : "Login To See Join Date"} disabled/>      
        <br />  
         <input type="text" placeholder="Number of Friends:" value ={isLoggedIn ? `Number of Friends: ${numberFriends}` : "Login To See Friends"}disabled/>            
+       <br /> 
        <br />      
       <a href="https://github.com/Jumbopushpop112/260-Startup">GitHub Repository Link</a>    
     </footer> 
