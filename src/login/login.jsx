@@ -51,7 +51,7 @@ export function Login() {
         alert("Username is taken!"); 
         return; 
       }else{
-        const curDate = new Date();
+        const curDate = new Date(); 
         users.push({
           username: username,  
           password: password,
