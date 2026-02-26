@@ -43,7 +43,7 @@ export function Login() {
         (user) => user.username === username
       );   
       if(username === ""){ 
-        alert("Can't sign up with a blank username");
+        alert("Can't sign up with a blank username!");
         return; 
       }
       if(isIncluded){  
