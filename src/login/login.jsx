@@ -56,7 +56,7 @@ export function Login() {
           password: password,
           joinDate: curDate.toLocaleDateString(),
           numberFriends: 0, 
-          receivedMessage: "" 
+          receivedMessages: [] 
         });  
         localStorage.setItem("Users",JSON.stringify(users));
       }  
