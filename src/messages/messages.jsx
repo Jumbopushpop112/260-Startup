@@ -17,7 +17,7 @@ export function Messages(){
         } 
         if(!users[recipientIndex].receivedMessages){
             users[recipientIndex].receivedMessages = [];
-        }  
+        }   
         users[recipientIndex].receivedMessages.push(message); 
         localStorage.setItem("Users", JSON.stringify(users));
         setMessage(""); 

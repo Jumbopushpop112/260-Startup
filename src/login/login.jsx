@@ -54,8 +54,7 @@ export function Login() {
         users.push({
           username: username,  
           password: password,
-          joinDate: curDate.toLocaleDateString(),
-          numberFriends: 0, 
+          joinDate: curDate.toLocaleDateString(), 
           receivedMessages: [] 
         });  
         localStorage.setItem("Users",JSON.stringify(users));
