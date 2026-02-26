@@ -9,11 +9,18 @@ export function Messages(){
             return; 
         } 
         const users = JSON.parse(localStorage.getItem("Users") || []);
+        const recipientIndex = users.findIndex(user => user.username === username);
         const userExists = users.some(user => user.username === username); 
         if(!userExists){
             alert("User does not exist. Please type a valid username"); 
             return; 
         } 
+        if(!users[recipientIndex].receivedMessages){
+            users[recipientIndex].receivedMessages = [];
+        }  
+        users[recipientIndex].receivedMessages.push(message); 
+        localStorage.setItem("Users", JSON.stringify(users));
+        setMessage(""); 
     }
     function pushMessage(event){
          
@@ -27,7 +34,7 @@ export function Messages(){
       </textarea>   
       <br /> 
       <input type="text" placeholder="Enter Username To Send" onChange={(e) => getUsername(e.target.value)}/>   
-      <br /> 
+      <br />  
       <button type="button" onClick={sendMessage}>Send Message</button>    
     </footer>  
     </main>
