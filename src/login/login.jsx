@@ -77,7 +77,7 @@ export function Login() {
   return ( 
       <main className="container-fluid bg-secondary text-center">
       <div id="login"> 
-          {isLoggedIn && <h1>Welcome, {username}!</h1>}
+          {isLoggedIn && <h1>Welcome, {username}!</h1>} 
           {!isLoggedIn && <h1>Welcome to Slime!</h1>}      
       <form>  
         <div>

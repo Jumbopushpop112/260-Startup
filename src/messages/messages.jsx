@@ -1,6 +1,7 @@
 import React from 'react'; 
 import { useEffect, useState } from 'react'; 
 export function Messages(){
+    //Websocket will be used to send messages over the server
     const [message, setMessage] = useState('');
     const [username, setUsername] = useState("");
     const [receivedMessages, setReceivedMessages] = useState([]);
@@ -22,12 +23,13 @@ export function Messages(){
             alert("User does not exist. Please type a valid username"); 
             return; 
         }  
-        // Always update receivedMessages for logged-in user
-        const currentUserIndex = users.findIndex(user => user.isLoggedIn); 
-        if(users[currentUserIndex].username === username){
-            users[currentUserIndex].receivedMessages.push(message);
-            setReceivedMessages(users[currentUserIndex].receivedMessages); // Update textarea immediately
-        }     
+        // Always update receivedMessages for logged-in user 
+        const recepientIndex = users.findIndex(user => user.username === username);  
+        if(recepientIndex === -1){
+            alert("Can't find user. Retry please!");
+            return;  
+        }    
+        users[recepientIndex].receivedMessages.push(message); 
         localStorage.setItem("Users", JSON.stringify(users));
         setMessage("");
     } 
