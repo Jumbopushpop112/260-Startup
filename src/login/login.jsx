@@ -69,6 +69,10 @@ export function Login() {
       event.preventDefault(); 
       localStorage.removeItem("currentUser");  
       setIsLoggedIn(false);  
+      const users = JSON.parse(localStorage.getItem("Users")) || []; 
+      const currentUserIndex = users.findIndex(user => user.isLoggedIn); 
+      users[currentUserIndex].isLoggedIn = false;
+      localStorage.setItem("Users", JSON.stringify(users));      
     }
   return ( 
       <main className="container-fluid bg-secondary text-center">
