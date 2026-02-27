@@ -34,7 +34,7 @@ export function Messages(){
         localStorage.setItem("Users", JSON.stringify(users));
         const currentUser = users.find(user => user.isLoggedIn);
         if (currentUser.username === username) {
-            setReceivedMessages(currentUser.receivedMessages);  
+            setReceivedMessages(currentUser.receivedMessages);   
         }
         setMessage("");
     } 
