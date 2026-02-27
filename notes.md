@@ -184,7 +184,17 @@ GET - Get a resource
 POST - Create a resource
 PUT - Update a resource
 DELETE - Delete a resource
-OPTIONS - Information about a resource  
+OPTIONS - Information about a resource   
+
+SERVICE NOTES
+const express = require('express');
+const app = express();
+
+app.get(/.*/, (req, res) => {
+ res.send('<h1>Hello Express!</h1>');
+});
+
+app.listen(3000);
  
 ## Startup DB  
 

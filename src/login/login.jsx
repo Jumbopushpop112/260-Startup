@@ -27,13 +27,15 @@ export function Login() {
       const validUser = users.find(
         (user) => user.username === username && user.password === password
       ); 
+      
       if(!validUser){
         alert("Error: Check the username and password, and try again."); 
         return  
       }
-      console.log("Username:", username);
-      console.log("Password:", password); 
-      localStorage.setItem("currentUser",username);    
+      users.forEach(user => user.isLoggedIn = false); // log out everyone else 
+      validUser.isLoggedIn = true; 
+      localStorage.setItem("currentUser",username); 
+      localStorage.setItem("Users", JSON.stringify(users));    
       setIsLoggedIn(true);   
     }
     function createAccount(event){
@@ -55,6 +57,7 @@ export function Login() {
           username: username,  
           password: password,
           joinDate: curDate.toLocaleDateString(), 
+          isLoggedIn: false,
           receivedMessages: [] 
         });  
         localStorage.setItem("Users",JSON.stringify(users));

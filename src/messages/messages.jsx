@@ -2,40 +2,54 @@ import React from 'react';
 import { useEffect, useState } from 'react'; 
 export function Messages(){
     const [message, setMessage] = useState('');
-    const [username, getUsername] = useState("");
+    const [username, setUsername] = useState("");
+    const [receivedMessages, setReceivedMessages] = useState([]);
+    useEffect(() => {
+        const users = JSON.parse(localStorage.getItem("Users") || "[]");
+        const currentUser = users.find(user => user.isLoggedIn);
+        if (currentUser && currentUser.receivedMessages) {
+            setReceivedMessages(currentUser.receivedMessages);
+        }
+    }, []); 
     function sendMessage(event){ 
         if(username === ""){
             alert("Enter a username!");
             return; 
         } 
-        const users = JSON.parse(localStorage.getItem("Users") || []);
-        const recipientIndex = users.findIndex(user => user.username === username);
+        const users = JSON.parse(localStorage.getItem("Users") || "[]"); 
         const userExists = users.some(user => user.username === username); 
         if(!userExists){
             alert("User does not exist. Please type a valid username"); 
             return; 
-        } 
-        if(!users[recipientIndex].receivedMessages){
-            users[recipientIndex].receivedMessages = [];
-        }   
-        users[recipientIndex].receivedMessages.push(message); 
+        }  
+        // Always update receivedMessages for logged-in user
+        const currentUserIndex = users.findIndex(user => user.isLoggedIn); 
+        if(users[currentUserIndex].username === username){
+            users[currentUserIndex].receivedMessages.push(message);
+            setReceivedMessages(users[currentUserIndex].receivedMessages); // Update textarea immediately
+        }     
         localStorage.setItem("Users", JSON.stringify(users));
-        setMessage(""); 
-    }
-    function pushMessage(event){
-         
-    }
+        setMessage("");
+    } 
     return( 
         <main>
     <footer id="navigationList">   
       <input type="text" placeholder="Websocket Data" />
       <br />   
-      <textarea class="messages" onChange={(e) => setMessage(e.target.value)}>  
-      </textarea>   
+      <textarea
+          className="messages"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+        />    
       <br /> 
-      <input type="text" placeholder="Enter Username To Send" onChange={(e) => getUsername(e.target.value)}/>   
-      <br />  
-      <button type="button" onClick={sendMessage}>Send Message</button>    
+      <input type="text" placeholder="Enter Username To Send" onChange={(e) => setUsername(e.target.value)}/>    
+      <br />   
+      <button type="button" onClick={sendMessage}>Send Message</button>
+      <br />
+      <br /> 
+      <input type="text" placeholder="Receieved Messages" disabled></input> 
+      <br /> 
+      <textarea className="messages" readOnly value={receivedMessages.join("\n")}/>     
     </footer>  
     </main>
     );
