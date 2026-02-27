@@ -29,8 +29,13 @@ export function Messages(){
             alert("Can't find user. Retry please!");
             return;  
         }    
+         
         users[recepientIndex].receivedMessages.push(message); 
         localStorage.setItem("Users", JSON.stringify(users));
+        const currentUser = users.find(user => user.isLoggedIn);
+        if (currentUser.username === username) {
+            setReceivedMessages(currentUser.receivedMessages);  
+        }
         setMessage("");
     } 
     return( 
