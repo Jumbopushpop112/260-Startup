@@ -1,5 +1,6 @@
 import React,{ useEffect, useState } from 'react';
-export function Login() { 
+export function Login() {
+  //Login code will be handled with database 
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
   const [username, setUsername] = useState(() => {
@@ -9,6 +10,7 @@ export function Login() {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem("currentUser") !== null;
   });   
+  //3rd Party API will call to update time and the date 
   useEffect(() => {
     function updateTime() {
       const now = new Date();
