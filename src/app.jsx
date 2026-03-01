@@ -13,7 +13,7 @@ export default function App() {
     <header>   
       <h1>Slime<sup>&reg;</sup></h1>  
       <nav id="navigationList">  
-        <menu>
+        <menu> 
           <li><NavLink to=''>Home</NavLink></li>   
           <li><NavLink to='faq'>FAQs</NavLink></li>  
           <li><NavLink to='messages'>Message</NavLink></li> 

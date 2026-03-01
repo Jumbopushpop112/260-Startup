@@ -102,9 +102,20 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ## 🚀 React part 2: Reactivity deliverable  
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+ 
+- [X] **All functionality implemented or mocked out** - User is able to login, their join date is displayed, user can register for an account, user can log in, user can send messages to themselves and other users.   
+- [X] **Hooks** - useEffect is used for setting the random quotes, getting the user join date, and setting the received messages. useState is used getting login status, setting the usernames, getting the join date, and getting the random quote to display.
+If a TA is reading this, and you want to test out my program here are the steps.
+1. First, make a username and password (make it something simple to test)
+2. It's saved in local storage. You'll need to make two accounts for it to work properly. You can also send messages to yourself.
+3. Navigate to your local storage and peak at the JSON object in there. It contains 5 items in there.
+4. Once ready, browse a little and check it out. FAQs page has a random quote. About has the join date statistics and displays the username.
+5. Navigate to messages and send a message to someone. When you send one for yourself, it will appear in the text area. Log in and out of different accounts to see the messages. It should work appropriately
+Database will be used for account creation
+3rd Party API will be used to generate quote, display the date and the time!
+Web Socket will be used to send messages
+Server will be used to update sent messages    
 
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
 
 ## 🚀 Service deliverable
 

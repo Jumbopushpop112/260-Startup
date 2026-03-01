@@ -46,7 +46,7 @@ export function Login() {
       const isIncluded = users.some(  
         (user) => user.username === username
       );   
-      if(username === ""){ 
+      if(username === ""){  
         alert("Can't sign up with a blank username!");
         return; 
       }

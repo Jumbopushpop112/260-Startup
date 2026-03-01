@@ -1,6 +1,6 @@
 import React from 'react'; 
 import { useState,useEffect} from "react"; 
-export function Faq(){
+export function Faq(){  
     const quotes = [
         "Believe you can and you're halfway there.",
         "Your only limit is your mind.",
@@ -98,8 +98,8 @@ export function Faq(){
         "Big journeys begin with small steps.",
         "Your potential is endless.",
         "Keep going. Everything you need will come to you at the perfect time."
-    ];
-
+    ]; 
+    //3rd Party API will be used  
   const [randomQuote, setRandomQuote] = useState("");
   useEffect(() => { 
     const randomIndex = Math.floor(Math.random() * quotes.length);

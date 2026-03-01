@@ -5,12 +5,12 @@ export function Messages(){
     const [message, setMessage] = useState('');
     const [username, setUsername] = useState("");
     const [receivedMessages, setReceivedMessages] = useState([]);
-    useEffect(() => {
+    useEffect(() => {  
         const users = JSON.parse(localStorage.getItem("Users") || "[]");
         const currentUser = users.find(user => user.isLoggedIn);
         if (currentUser && currentUser.receivedMessages) {
             setReceivedMessages(currentUser.receivedMessages);
-        }
+        } 
     }, []); 
     function sendMessage(event){ 
         if(username === ""){
@@ -29,20 +29,19 @@ export function Messages(){
             alert("Can't find user. Retry please!");
             return;  
         }    
-         
         users[recepientIndex].receivedMessages.push(message); 
         localStorage.setItem("Users", JSON.stringify(users));
         const currentUser = users.find(user => user.isLoggedIn);
         if (currentUser.username === username) {
             setReceivedMessages(currentUser.receivedMessages);   
         }
-        setMessage("");
+        setMessage(""); 
     } 
     return( 
-        <main>
+        <main> 
     <footer id="navigationList">   
       <input type="text" placeholder="Websocket Data" />
-      <br />   
+      <br />    
       <textarea
           className="messages"
           value={message}
