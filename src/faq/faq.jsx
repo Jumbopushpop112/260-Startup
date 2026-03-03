@@ -98,7 +98,7 @@ export function Faq(){
         "Big journeys begin with small steps.",
         "Your potential is endless.",
         "Keep going. Everything you need will come to you at the perfect time."
-    ]; 
+    ];  
     //3rd Party API will be used  
   const [randomQuote, setRandomQuote] = useState("");
   useEffect(() => { 

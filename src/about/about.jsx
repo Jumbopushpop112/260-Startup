@@ -11,7 +11,7 @@ export function About() {
     if (currentUsername) {
       const users = JSON.parse(localStorage.getItem("Users")) || []; 
       const currentUser = users.find(user => user.username === currentUsername);
-      if (currentUser) {   
+      if (currentUser) {    
         setJoinDate(currentUser.joinDate);    
         getUsername(currentUser.username);    
       } 

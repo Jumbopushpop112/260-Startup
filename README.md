@@ -100,8 +100,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [X] **Router** - All items have been routed via react. This part was challenging, but lots of fun!  
 
 ## 🚀 React part 2: Reactivity deliverable  
-
-For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+ 
+For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed. 
  
 - [X] **All functionality implemented or mocked out** - User is able to login, their join date is displayed, user can register for an account, user can log in, user can send messages to themselves and other users.   
 - [X] **Hooks** - useEffect is used for setting the random quotes, getting the user join date, and setting the received messages. useState is used getting login status, setting the usernames, getting the join date, and getting the random quote to display.

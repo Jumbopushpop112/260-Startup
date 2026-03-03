@@ -34,7 +34,7 @@ export function Messages(){
         const currentUser = users.find(user => user.isLoggedIn);
         if (currentUser.username === username) {
             setReceivedMessages(currentUser.receivedMessages);   
-        }
+        }  
         setMessage(""); 
     } 
     return( 
