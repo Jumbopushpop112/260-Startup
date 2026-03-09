@@ -1,21 +1,26 @@
 import React from 'react'; 
 import { useState,useEffect} from "react"; 
-export function Faq(){  
-    const [quote, getQuote] = useState("");
-    const [author, getAuthor] = useState("");
-  //third party API call  
-  async function fetchQuote(){
-    const response = await fetch('https://api.quotable.io/random');
-    const data = await response.json();
-    getQuote(data.content); 
-    getAuthor(data.author);
-  }
-  useEffect(() => {
-        fetchQuote();  
-    }, []);
- 
-   
-    return( 
+export function Faq(){
+    const [quote, setQuote] = useState("");
+    const [author, setAuthor] = useState("");
+  useEffect(() => { 
+    async function loadQuote() { 
+      try{
+         const response = await fetch("https://api.quotable.io/random");
+         const data = await response.json(); 
+         setQuote(data.content);  
+         setAuthor(data.author);  
+      }
+      catch(err){
+        console.error(err);
+        setQuote("Could not load quote");
+        setAuthor(""); 
+      } 
+    }
+    loadQuote();
+  }, []);
+      
+    return(   
         <main> 
         <menu id="faq">     
             <li className="FAQ">Is Slime Free? Yes, absolutely. All we ask is that you are kind to others</li>
