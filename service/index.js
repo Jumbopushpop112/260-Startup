@@ -32,9 +32,19 @@ async function findUser(field, value) {
   return users.find((u) => u[field] === value);
 }
 
+// Default error handler
+app.use(function (err, req, res, next) {
+  res.status(500).send({ type: err.name, message: err.message });
+});
+
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+  res.sendFile('index.html', { root: 'public' });
+}); 
+
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
-  res.cookie(authCookieName, authToken, {
+  res.cookie(authCookieName, authToken, { 
     maxAge: 1000 * 60 * 60 * 24 * 365,
     secure: true,
     httpOnly: true,
