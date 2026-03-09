@@ -10,7 +10,7 @@ let users = [];
 app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter); 
- 
+app.use(cookieParser()); 
 
 //create user 
 async function createUser(username, password) {
@@ -18,10 +18,10 @@ async function createUser(username, password) {
   const user = {
     username: username,
     password: passwordHash,
+    messages: [],
     token: uuid.v4(),
   };
   users.push(user); 
-
   return user;
 }
 
@@ -31,6 +31,15 @@ async function findUser(field, value) {
 
   return users.find((u) => u[field] === value);
 }
+//verification function  
+const verifyAuth = async (req, res, next) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
+};
 
 // Default error handler
 app.use(function (err, req, res, next) {
@@ -41,6 +50,14 @@ app.use(function (err, req, res, next) {
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
 }); 
+
+//update messages function
+async function updateMessages(username, message) {
+  const user = await findUser('username', username);
+  if (!user) return null; 
+  user.messages.push(message);
+  return message;
+}
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
