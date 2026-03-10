@@ -24,8 +24,8 @@ export function Faq(){
     async function getIp() { 
       try{
          const response = await fetch('https://api.ipify.org?format=json');
-      const data = await response.json();
-      setIp(data.ip); 
+         const data = await response.json();
+        setIp(data.ip);  
       }
       catch(err){
         console.log(err);
@@ -42,7 +42,7 @@ export function Faq(){
             <li className="FAQ">What makes Slime special? Slime was developed by Matthew Hart, a CS student at BYU. It's his first project!</li>
             <li className="FAQ">Is it possible to take breaks from slime? Yes.</li>
             <li className="FAQ">Random Quote: {quote} - {author}</li>   
-            <li className="FAQ">IP Address: {ip}</li>   
+            <li className="FAQ">Your IP Address: {ip}</li>   
         </menu>     
         </main> 
     );
