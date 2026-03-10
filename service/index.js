@@ -55,7 +55,7 @@ app.use((_req, res) => {
 async function updateMessages(username, message) {
   const user = await findUser('username', username); 
   if (!user) return null;  
-  user.messages.push(message);  
+  user.messages.push(message);   
   return user.messages; 
 }
 
@@ -63,7 +63,7 @@ async function updateMessages(username, message) {
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, { 
     maxAge: 1000 * 60 * 60 * 24 * 365,
-    secure: true,
+    secure: true, 
     httpOnly: true,
     sameSite: 'strict', 
   }); 

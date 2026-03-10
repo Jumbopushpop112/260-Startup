@@ -196,6 +196,6 @@ app.get(/.*/, (req, res) => {
 
 app.listen(3000);
  
- 
 ## Startup DB  
-
+Mongo DB calls then collections, and they are simply arrays (think JSON objects) 
+mongodb+srv://mhart:<db_password>@slimestartup.8wgs5rb.mongodb.net/?appName=SlimeStartup
