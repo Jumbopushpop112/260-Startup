@@ -9,7 +9,7 @@ let users = [];
  
 app.use(express.static('public'));
 var apiRouter = express.Router();
-app.use(`/api`, apiRouter); 
+app.use(`/api`, apiRouter);  
 app.use(cookieParser()); 
 
 //create user 
@@ -18,7 +18,7 @@ async function createUser(username, password) {
   const user = {
     username: username,
     password: passwordHash,
-    messages: [],
+    messages: [], 
     token: uuid.v4(),
   };
   users.push(user); 
@@ -53,10 +53,10 @@ app.use((_req, res) => {
 
 //update messages function
 async function updateMessages(username, message) {
-  const user = await findUser('username', username);
-  if (!user) return null; 
-  user.messages.push(message);
-  return message;
+  const user = await findUser('username', username); 
+  if (!user) return null;  
+  user.messages.push(message);  
+  return user.messages; 
 }
 
 // setAuthCookie in the HTTP response
