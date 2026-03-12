@@ -6,13 +6,16 @@ export function Messages(){
     const [toUsername, setToUsername] = useState(''); 
     const [receivedMessages, setReceivedMessages] = useState([]);
 
-    useEffect(() => {
+    useEffect(() => {  
     async function fetchMessages() {
       try {
         const res = await fetch('/api/messages', {
           credentials: 'include',
         });
-        if (!res.ok) throw new Error('Failed to fetch messages');
+        if (!res.ok) {
+          const text = await res.text();
+          throw new Error(text); 
+        }
         const messages = await res.json();
         setReceivedMessages(messages);
       } catch (err) {
@@ -29,11 +32,11 @@ export function Messages(){
     }
     try {
       const res = await fetch('/api/message', {
-        method: 'POST',
+        method: 'POST', 
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message, toUsername }),
-      });
+      }); 
       if (!res.ok) {
         const errMsg = await res.json();
         throw new Error(errMsg.msg || 'Failed to send message');

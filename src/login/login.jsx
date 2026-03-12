@@ -6,7 +6,25 @@ export function Login() {
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState(''); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
-   
+  useEffect(() => { 
+  async function checkLogin() {
+    try {
+      const res = await fetch('/api/user', {
+        credentials: 'include',
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setUsername(data.username);
+        setIsLoggedIn(true);
+      }
+    } catch (err) {
+      console.error("Login check failed", err);
+    }
+  }
+
+  checkLogin();
+}, []);
   useEffect(() => {
     function updateTime() {
       const now = new Date();
@@ -21,6 +39,7 @@ export function Login() {
   async function Logout(){
     await fetch('/api/auth/logout', {
       method: 'DELETE',
+      credentials: 'include', 
     });
     setIsLoggedIn(false);  
     setUsername("");
@@ -29,6 +48,7 @@ export function Login() {
   async function createAccount(){
     const response = await fetch('/api/auth/create', {
       method: 'POST',
+      credentials: 'include',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ username, password }),
     }); 
@@ -40,10 +60,11 @@ export function Login() {
     }else{ 
       alert("User already exists!"); 
     }
-  }
+  }  
   async function userLogin(){
     const response = await fetch('/api/auth/login', {
     method: 'POST',
+    credentials: 'include',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ username, password }),
     });
