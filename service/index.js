@@ -20,6 +20,7 @@ var apiRouter = express.Router();
 app.use('/api', apiRouter);
 // CreateAuth a new user 
 apiRouter.post('/auth/create', async (req, res) => {
+  alert(req.body);  
   if (await findUser('username', req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
   } else { 
