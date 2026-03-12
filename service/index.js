@@ -1,4 +1,4 @@
-app.use(express.json()); 
+
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
@@ -6,7 +6,7 @@ const express = require('express');
 const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token'; 
-
+app.use(express.json());  
 let users = []; 
  
 app.use(express.static('public'));
@@ -101,15 +101,14 @@ apiRouter.post('/user', verifyAuth, async (req, res) => {
     username: user.username,
     joinDate: user.joinDate
   });
-});
+}); 
 apiRouter.get('/user', verifyAuth, async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  if (!user) return res.status(401).send({ msg: 'Unauthorized' });
-
+  if (!user) return res.status(401).send({ msg: 'Unauthorized' }); 
   res.send({
     username: user.username,
     joinDate: user.joinDate,
-  });
+  }); 
 });
 //submitMessages
 apiRouter.post('/message', verifyAuth, async (req, res) => {

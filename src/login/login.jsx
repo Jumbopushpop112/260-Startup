@@ -3,77 +3,25 @@ export function Login() {
   //Login code will be handled with database 
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
-  const [username, setUsername] = useState(() => {
-    return localStorage.getItem("currentUser") || '';
-  }); 
+  const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState(''); 
-  const [isLoggedIn, setIsLoggedIn] = useState(() => {
-    return localStorage.getItem("currentUser") !== null;
-  });   
-  //3rd Party API will call to update time and the date 
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  
   useEffect(() => {
     function updateTime() {
       const now = new Date();
       setTime(now.toLocaleTimeString());
       setDate(now.toLocaleDateString());
     }   
-
     updateTime(); // run immediately
     const interval = setInterval(updateTime, 1000);   
     return () => clearInterval(interval); // cleanup
    }, []); 
-   function userLogin(event){ 
-      event.preventDefault(); 
-      const users = JSON.parse(localStorage.getItem("Users"));  
-      //is the user in our system? 
-      const validUser = users.find(
-        (user) => user.username === username && user.password === password
-      ); 
-      
-      if(!validUser){
-        alert("Error: Check the username and password, and try again."); 
-        return  
-      }
-      users.forEach(user => user.isLoggedIn = false); // log out everyone else 
-      validUser.isLoggedIn = true; 
-      localStorage.setItem("currentUser",username); 
-      localStorage.setItem("Users", JSON.stringify(users));    
-      setIsLoggedIn(true);   
-    }
-    function createAccount(event){
-      event.preventDefault(); 
-      const users = JSON.parse(localStorage.getItem("Users")) || []; 
-      const isIncluded = users.some(  
-        (user) => user.username === username
-      );   
-      if(username === ""){   
-        alert("Can't sign up with a blank username!");
-        return; 
-      }
-      if(isIncluded){  
-        alert("Username is taken!"); 
-        return;  
-      }else{
-        const curDate = new Date(); 
-        users.push({
-          username: username,  
-          password: password,
-          joinDate: curDate.toLocaleDateString(), 
-          isLoggedIn: false,
-          receivedMessages: [] 
-        });  
-        localStorage.setItem("Users",JSON.stringify(users));
-      }  
-    }
-    function Logout(event){
-      event.preventDefault(); 
-      localStorage.removeItem("currentUser");  
-      setIsLoggedIn(false);  
-      const users = JSON.parse(localStorage.getItem("Users")) || []; 
-      const currentUserIndex = users.findIndex(user => user.isLoggedIn); 
-      users[currentUserIndex].isLoggedIn = false;
-      localStorage.setItem("Users", JSON.stringify(users));      
-    }
+    
+  useEffect(() =>{
+
+  })
+
   return ( 
       <main className="container-fluid bg-secondary text-center">
       <div id="login"> 

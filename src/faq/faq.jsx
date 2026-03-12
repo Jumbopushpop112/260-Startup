@@ -25,7 +25,7 @@ export function Faq(){
       try{
          const response = await fetch('https://api.ipify.org?format=json');
          const data = await response.json(); 
-        setIp(data.ip);  
+        setIp(data.ip);     
       }
       catch(err){
         console.log(err);

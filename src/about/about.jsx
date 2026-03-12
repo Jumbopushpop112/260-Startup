@@ -6,14 +6,14 @@ export function About() {
 
   useEffect(() => {
     async function fetchUserInfo() {
-      try {
+      try { 
         const res = await fetch('/api/user', {
           credentials: 'include'
         });
 
         if (!res.ok) {
           setIsLoggedIn(false);
-          return;
+          return; 
         }
         const data = await res.json();
         setUsername(data.username);
