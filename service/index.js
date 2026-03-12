@@ -1,9 +1,11 @@
+app.use(express.json()); 
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
 const app = express();
+const authCookieName = 'token'; 
 
 let users = [];
  
@@ -11,7 +13,7 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);   
 app.use(cookieParser()); 
-
+ 
 // CreateAuth a new user
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('username', req.body.username)) {
@@ -77,14 +79,21 @@ const verifyAuth = async (req, res, next) => {
 };
 
 //getMessages
-apiRouter.get('/messages', verifyAuth, (_req, res) => {
-  res.send(messages); 
+apiRouter.get('/messages', verifyAuth, async(_req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) return res.status(401).send({ msg: 'Unauthorized' }); 
+  // Expecting req.body.message to contain the new message
+  res.send(user.messages);
 });
 
 //submitMessages
-apiRouter.post('/messages', verifyAuth, (req, res) => {
-  messages = updateMessages(req.body); 
-  res.send(messages);
+apiRouter.post('/message', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) return res.status(401).send({ msg: 'Unauthorized' });
+  const { message } = req.body;
+  if (!message) return res.status(400).send({ msg: 'No message provided' });
+  user.messages.push(message); 
+  res.send(user.messages); 
 });
 
 // Default error handler
@@ -95,21 +104,8 @@ app.use(function (err, req, res, next) {
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
   res.sendFile('index.html', { root: 'public' });
-}); 
+});  
 
-//updateMessages function
-function updateMessages(newMessage){
-    messages.push(newMessage);
-    return messages;
-}
-
-//update messages function
-async function updateMessages(username, message) {
-  const user = await findUser('username', username); 
-  if (!user) return null;  
-  user.messages.push(message);   
-  return user.messages;  
-}
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
