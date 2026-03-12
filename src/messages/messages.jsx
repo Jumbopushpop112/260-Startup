@@ -5,7 +5,22 @@ export function Messages(){
     const [message, setMessage] = useState('');
     const [toUsername, setToUsername] = useState(''); 
     const [receivedMessages, setReceivedMessages] = useState([]);
+    const [username, setUsername] = useState('');
 
+    useEffect(() => {
+    async function fetchUser() {
+      try {
+        const res = await fetch('/api/user', { credentials: 'include' });
+        if (res.ok) {
+          const data = await res.json();
+          setUsername(data.username); // store the current logged-in username
+        }
+      } catch (err) {
+        console.error("Failed to get user:", err);
+      }
+    }
+      fetchUser();
+    }, []);
     useEffect(() => {  
     async function fetchMessages() {
       try {
@@ -49,11 +64,11 @@ export function Messages(){
       setMessage('');
       setToUsername('');
     } catch (err) {
-      console.error(err);
+      console.error(err);  
       alert(err.message);
     }
   }
-
+  const messagesToShow = receivedMessages.filter(msg => !msg.startsWith('To') && !msg.startsWith(username));   
     return( 
         <main> 
     <footer id="navigationList">   
@@ -71,8 +86,8 @@ export function Messages(){
       <br />
       <br /> 
       <input type="text" placeholder="Receieved Messages" disabled></input> 
-      <br /> 
-      <textarea className="messages" readOnly value={receivedMessages.join("\n")}/>     
+      <br />   
+      <textarea className="messages" readOnly value={messagesToShow.join("\n")}/>      
     </footer>  
     </main>
     );

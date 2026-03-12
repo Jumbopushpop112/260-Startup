@@ -132,10 +132,7 @@ apiRouter.post('/message', verifyAuth, async (req, res) => {
   if (!recipient) return res.status(404).send({ msg: 'Recipient not found' });
 
   // Add message to recipient's messages
-  recipient.messages.push(`${sender.username}: ${message}`);
-
-  // Optionally, also add to sender's messages
-  sender.messages.push(`To ${toUsername}: ${message}`);
+  recipient.messages.push(`${sender.username}: ${message}`); 
 
   res.send({ success: true }); 
 });

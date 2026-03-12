@@ -30,7 +30,7 @@ export function Login() {
       const now = new Date();
       setTime(now.toLocaleTimeString());
       setDate(now.toLocaleDateString());
-    }   
+    }    
     updateTime(); // run immediately
     const interval = setInterval(updateTime, 1000);   
     return () => clearInterval(interval); // cleanup
