@@ -33,10 +33,10 @@ export function Login() {
     body: JSON.stringify({ username, password }),
     });
     if(response.ok){
-      const data = response.json;
+      const data = await response.json(); 
       setUsername(data.username); 
       setIsLoggedIn(true);
-    }else{
+    }else{ 
       alert("User already exists!"); 
     }
   }
@@ -55,12 +55,12 @@ export function Login() {
     }
   }
 
-  return ( 
+  return (  
       <main className="container-fluid bg-secondary text-center">
       <div id="login"> 
           {isLoggedIn && <h1>Welcome, {username}!</h1>} 
           {!isLoggedIn && <h1>Welcome to Slime!</h1>}      
-      <form>  
+      <form onSubmit={(e) => e.preventDefault()}>     
         <div>
           <span style={{fontSize: '20px'}}>@</span>  
           <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn}/>   
