@@ -55,9 +55,7 @@ export function Messages(){
       if (!res.ok) {
         const errMsg = await res.json();
         throw new Error(errMsg.msg || 'Failed to send message');
-      }
-
-      // Optionally, refetch messages to update the UI
+      } 
       const updated = await fetch('/api/messages', { credentials: 'include' });
       const updatedMessages = await updated.json();
       setReceivedMessages(updatedMessages);

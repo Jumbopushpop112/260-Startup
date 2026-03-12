@@ -121,13 +121,16 @@ Server will be used to update sent messages
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
+- [X] **Node.js/Express HTTP service** - index.js file uses express HTTP service to handle service requests such as account creation, logging in, logging out, and sending messages.  
+- [X] **Static middleware for frontend** - index.js file uses express.static('public') to handle requests for static assets 
 - [X] **Calls to third party endpoints** - Third party APIs are used to get the ip address of the user, and to get a random quote. 
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-
+- [X] **Backend service endpoints** - Backend service points are used to create a user, login a user, logout a user, using different methods and paths. Each one performs a specific task. 
+- [X] **Frontend calls service endpoints** - Frontend code calls service endpoints to check if a user is logged in, log out a user and set the state to be false, and to create an account. It also calls endpoints when send messages using HTTP requests.  
+- [X] **Supports registration, login, logout, and restricted endpoint** - Frontend and backend code allow a user to register (enterting a username and password), user can login once an account is created, and can logout once an account has been created. If a user is not logged in, they are not able to see statistics, such as join date, and username on the about page. If they are not logged in, they can't send messages
+When testing deliverable:
+The default accounts created are b and m 
+username: b password: b
+username: m password: m 
 ## 🚀 DB deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
