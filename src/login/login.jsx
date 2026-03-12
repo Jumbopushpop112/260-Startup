@@ -6,7 +6,7 @@ export function Login() {
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState(''); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
-  
+   
   useEffect(() => {
     function updateTime() {
       const now = new Date();
@@ -28,10 +28,11 @@ export function Login() {
   }
   async function createAccount(){
     const response = await fetch('/api/auth/create', {
-    method: 'POST',
-    headers: { 'content-type': 'application/json' },
-    body: JSON.stringify({ username, password }),
-    });
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ username, password }),
+    }); 
+    console.log(response.ok); 
     if(response.ok){
       const data = await response.json();  
       setUsername(data.username); 
@@ -69,7 +70,7 @@ export function Login() {
         <div>
           <span>🔒</span>
           <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} />  
-        </div> 
+        </div>  
         <br /> 
         {!isLoggedIn && <button type="button" onClick={userLogin}>Login</button>}          
         {!isLoggedIn && <button type="button" onClick={createAccount}>Create Account</button>} 

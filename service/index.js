@@ -5,12 +5,12 @@ const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token';
-
+let users = []; 
 // parse JSON first
 app.use(express.json());
 
 // parse cookies before your routes
-app.use(cookieParser());
+app.use(cookieParser()); 
 
 // serve static React files
 app.use(express.static('public'));
@@ -20,9 +20,13 @@ var apiRouter = express.Router();
 app.use('/api', apiRouter);
 // CreateAuth a new user 
 apiRouter.post('/auth/create', async (req, res) => {
-  alert(req.body);  
+  const { username, password } = req.body;
+  if (!username || !password) {
+    return res.status(400).send({ msg: 'Username and password are required' });
+  } 
+  console.log(req.body);    
   if (await findUser('username', req.body.username)) {
-    res.status(409).send({ msg: 'Existing user' });
+    res.status(409).send({ msg: 'Existing user' }); 
   } else { 
     const user = await createUser(req.body.username, req.body.password);  
     setAuthCookie(res, user.token); 
@@ -37,17 +41,17 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
       setAuthCookie(res, user.token); 
-      res.send({ username: user.username});
+      res.send({ username: user.username});   
       return;
     } 
   }
   res.status(401).send({ msg: 'Unauthorized' });
-});
-
+});   
+ 
 // DeleteAuth logout a user
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  if (user) {
+  if (user) {   
     delete user.token; 
   }
   res.clearCookie(authCookieName);
@@ -99,17 +103,14 @@ apiRouter.get('/messages', verifyAuth, async(_req, res) => {
 apiRouter.post('/user', verifyAuth, async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user) return res.status(401).send({ msg: 'Unauthorized' });
-
   const { username, joinDate } = req.body;
-
   if (username) user.username = username;
   if (joinDate) user.joinDate = joinDate;
-
   res.send({
     username: user.username,
     joinDate: user.joinDate
   });
-}); 
+});  
 apiRouter.get('/user', verifyAuth, async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (!user) return res.status(401).send({ msg: 'Unauthorized' }); 
@@ -144,16 +145,16 @@ app.use(function (err, req, res, next) {
 });  
 
 // Return the application's default page if the path is unknown
-app.use((_req, res) => {
-  res.sendFile('index.html', { root: 'public' });
-});  
-
+//app.use((_req, res) => {
+  //res.sendFile('index.html', { root: 'public' });
+//});  
+ 
 
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, { 
     maxAge: 1000 * 60 * 60 * 24 * 365,
-    secure: true, 
+    secure: false, 
     httpOnly: true,
     sameSite: 'strict', 
   }); 
