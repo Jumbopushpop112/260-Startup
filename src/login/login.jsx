@@ -18,9 +18,42 @@ export function Login() {
     return () => clearInterval(interval); // cleanup
    }, []); 
     
-  useEffect(() =>{
-
-  })
+  async function Logout(){
+    await fetch('/api/auth/logout', {
+      method: 'DELETE',
+    });
+    setIsLoggedIn(false); 
+    setUsername("");
+    setPassword(""); 
+  }
+  async function createAccount(){
+    const response = await fetch('/api/auth/create', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+    });
+    if(response.ok){
+      const data = response.json;
+      setUsername(data.username); 
+      setIsLoggedIn(true);
+    }else{
+      alert("User already exists!"); 
+    }
+  }
+  async function userLogin(){
+    const response = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ username, password }),
+    });
+    if(response.ok){
+      const data = await response.json(); 
+      setUsername(data.username);
+      setIsLoggedIn(true); 
+    }else{
+      alert("Login failed"); 
+    }
+  }
 
   return ( 
       <main className="container-fluid bg-secondary text-center">
@@ -38,9 +71,9 @@ export function Login() {
           <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} />  
         </div> 
         <br /> 
-        {!isLoggedIn && <button type="button" onClick={(event) => userLogin(event)}>Login</button>}          
-        {!isLoggedIn && <button type="button" onClick={(event) => createAccount(event)}>Create Account</button>} 
-        {isLoggedIn && <button type="button" onClick={(event) => Logout(event)}>Logout</button>} 
+        {!isLoggedIn && <button type="button" onClick={userLogin}>Login</button>}          
+        {!isLoggedIn && <button type="button" onClick={createAccount}>Create Account</button>} 
+        {isLoggedIn && <button type="button" onClick={Logout}>Logout</button>}  
       </form>
       </div> 
     <footer id="navigationList">  
