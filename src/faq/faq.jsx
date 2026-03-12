@@ -18,7 +18,7 @@ export function Faq(){
         setAuthor(""); 
       } 
     }
-    loadQuote();
+    loadQuote(); 
   }, []);
   useEffect(() => { 
     async function getIp() { 

@@ -14,7 +14,7 @@ var apiRouter = express.Router();
 app.use(`/api`, apiRouter);   
 app.use(cookieParser()); 
  
-// CreateAuth a new user
+// CreateAuth a new user 
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('username', req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
@@ -43,7 +43,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {
-    delete user.token;
+    delete user.token; 
   }
   res.clearCookie(authCookieName);
   res.status(204).end();
@@ -51,11 +51,13 @@ apiRouter.delete('/auth/logout', async (req, res) => {
   
 //create user 
 async function createUser(username, password) {
+  const now = new Date();
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
     username: username,
     password: passwordHash,
     messages: [], 
+    joinDate: now.toLocaleDateString(), 
     token: uuid.v4(),
   };
   users.push(user); 
@@ -85,7 +87,30 @@ apiRouter.get('/messages', verifyAuth, async(_req, res) => {
   // Expecting req.body.message to contain the new message
   res.send(user.messages);
 });
+ 
+apiRouter.post('/user', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) return res.status(401).send({ msg: 'Unauthorized' });
 
+  const { username, joinDate } = req.body;
+
+  if (username) user.username = username;
+  if (joinDate) user.joinDate = joinDate;
+
+  res.send({
+    username: user.username,
+    joinDate: user.joinDate
+  });
+});
+apiRouter.get('/user', verifyAuth, async (req, res) => {
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (!user) return res.status(401).send({ msg: 'Unauthorized' });
+
+  res.send({
+    username: user.username,
+    joinDate: user.joinDate,
+  });
+});
 //submitMessages
 apiRouter.post('/message', verifyAuth, async (req, res) => {
   const sender = await findUser('token', req.cookies[authCookieName]);

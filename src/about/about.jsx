@@ -2,20 +2,28 @@ import React,{ useEffect, useState } from 'react';
 export function About() {   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [joinDate, setJoinDate] = useState("");
-  const [username, getUsername] = useState(""); 
+  const [username, setUsername] = useState("");  
 
   useEffect(() => {
-    const currentUsername = localStorage.getItem("currentUser");
-    setIsLoggedIn(!!currentUsername);
+    async function fetchUserInfo() {
+      try {
+        const res = await fetch('/api/user', {
+          credentials: 'include'
+        });
 
-    if (currentUsername) {
-      const users = JSON.parse(localStorage.getItem("Users")) || []; 
-      const currentUser = users.find(user => user.username === currentUsername);
-      if (currentUser) {    
-        setJoinDate(currentUser.joinDate);    
-        getUsername(currentUser.username);    
-      } 
-    } 
+        if (!res.ok) {
+          setIsLoggedIn(false);
+          return;
+        }
+        const data = await res.json();
+        setUsername(data.username);
+        setJoinDate(data.joinDate);
+        setIsLoggedIn(true);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchUserInfo(); 
   }, []); // run once on mount
 
   return ( 
