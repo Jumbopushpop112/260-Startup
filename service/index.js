@@ -1,19 +1,23 @@
-
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
+const express = require('express');  
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
-const express = require('express');
 const uuid = require('uuid');
 const app = express();
-const authCookieName = 'token'; 
-app.use(express.json());  
-let users = []; 
- 
+const authCookieName = 'token';
+
+// parse JSON first
+app.use(express.json());
+
+// parse cookies before your routes
+app.use(cookieParser());
+
+// serve static React files
 app.use(express.static('public'));
+
+// API router
 var apiRouter = express.Router();
-app.use(`/api`, apiRouter);   
-app.use(cookieParser()); 
- 
+app.use('/api', apiRouter);
 // CreateAuth a new user 
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('username', req.body.username)) {
@@ -66,8 +70,9 @@ async function createUser(username, password) {
 
 //find a user by whatever value we want (this can be an email, or a username)
 async function findUser(field, value) {
-  if (!value) return null;  
-
+  if (!value){
+    return null;  
+  } 
   return users.find((u) => u[field] === value);
 }
 //verification function  
@@ -77,13 +82,15 @@ const verifyAuth = async (req, res, next) => {
     next();
   } else {
     res.status(401).send({ msg: 'Unauthorized' });
-  }
+  } 
 };
 
 //getMessages
 apiRouter.get('/messages', verifyAuth, async(_req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
-  if (!user) return res.status(401).send({ msg: 'Unauthorized' }); 
+  if (!user){
+     return res.status(401).send({ msg: 'Unauthorized' });  
+  }
   // Expecting req.body.message to contain the new message
   res.send(user.messages);
 });
@@ -153,4 +160,4 @@ function setAuthCookie(res, authToken) {
 
 app.listen(port, () => {  
   console.log(`Listening on port ${port}`);
-});
+}); 

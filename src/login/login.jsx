@@ -22,7 +22,7 @@ export function Login() {
     await fetch('/api/auth/logout', {
       method: 'DELETE',
     });
-    setIsLoggedIn(false); 
+    setIsLoggedIn(false);  
     setUsername("");
     setPassword(""); 
   }
@@ -33,7 +33,7 @@ export function Login() {
     body: JSON.stringify({ username, password }),
     });
     if(response.ok){
-      const data = await response.json(); 
+      const data = await response.json();  
       setUsername(data.username); 
       setIsLoggedIn(true);
     }else{ 
