@@ -7,7 +7,7 @@ const uuid = require('uuid');
 const app = express();
 const authCookieName = 'token'; 
 
-let users = [];
+let users = []; 
  
 app.use(express.static('public'));
 var apiRouter = express.Router();
@@ -18,7 +18,7 @@ app.use(cookieParser());
 apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('username', req.body.username)) {
     res.status(409).send({ msg: 'Existing user' });
-  } else {
+  } else { 
     const user = await createUser(req.body.username, req.body.password);  
     setAuthCookie(res, user.token); 
     res.send({ username: user.username });
@@ -88,12 +88,22 @@ apiRouter.get('/messages', verifyAuth, async(_req, res) => {
 
 //submitMessages
 apiRouter.post('/message', verifyAuth, async (req, res) => {
-  const user = await findUser('token', req.cookies[authCookieName]);
-  if (!user) return res.status(401).send({ msg: 'Unauthorized' });
-  const { message } = req.body;
-  if (!message) return res.status(400).send({ msg: 'No message provided' });
-  user.messages.push(message); 
-  res.send(user.messages); 
+  const sender = await findUser('token', req.cookies[authCookieName]);
+  if (!sender) return res.status(401).send({ msg: 'Unauthorized' });
+
+  const { message, toUsername } = req.body;
+  if (!message || !toUsername) return res.status(400).send({ msg: 'Message and recipient required' });
+
+  const recipient = await findUser('username', toUsername);
+  if (!recipient) return res.status(404).send({ msg: 'Recipient not found' });
+
+  // Add message to recipient's messages
+  recipient.messages.push(`${sender.username}: ${message}`);
+
+  // Optionally, also add to sender's messages
+  sender.messages.push(`To ${toUsername}: ${message}`);
+
+  res.send({ success: true }); 
 });
 
 // Default error handler

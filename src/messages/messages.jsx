@@ -3,40 +3,54 @@ import { useEffect, useState } from 'react';
 export function Messages(){
     //Websocket will be used to send messages over the server
     const [message, setMessage] = useState('');
-    const [username, setUsername] = useState("");
+    const [toUsername, setToUsername] = useState(''); 
     const [receivedMessages, setReceivedMessages] = useState([]);
-    useEffect(() => {  
-        const users = JSON.parse(localStorage.getItem("Users") || "[]");
-        const currentUser = users.find(user => user.isLoggedIn);
-        if (currentUser && currentUser.receivedMessages) {
-            setReceivedMessages(currentUser.receivedMessages);
-        } 
-    }, []); 
-    function sendMessage(event){ 
-        if(username === ""){
-            alert("Enter a username!");
-            return; 
-        } 
-        const users = JSON.parse(localStorage.getItem("Users") || "[]"); 
-        const userExists = users.some(user => user.username === username); 
-        if(!userExists){
-            alert("User does not exist. Please type a valid username"); 
-            return; 
-        }  
-        // Always update receivedMessages for logged-in user 
-        const recepientIndex = users.findIndex(user => user.username === username);  
-        if(recepientIndex === -1){
-            alert("Can't find user. Retry please!");
-            return;  
-        }    
-        users[recepientIndex].receivedMessages.push(message); 
-        localStorage.setItem("Users", JSON.stringify(users));
-        const currentUser = users.find(user => user.isLoggedIn);
-        if (currentUser.username === username) {
-            setReceivedMessages(currentUser.receivedMessages);   
-        }  
-        setMessage(""); 
-    } 
+
+    useEffect(() => {
+    async function fetchMessages() {
+      try {
+        const res = await fetch('/api/messages', {
+          credentials: 'include',
+        });
+        if (!res.ok) throw new Error('Failed to fetch messages');
+        const messages = await res.json();
+        setReceivedMessages(messages);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    fetchMessages();
+  }, []);
+
+  async function sendMessage() {
+    if (!message.trim() || !toUsername.trim()) {
+      alert('Enter both recipient username and message!');
+      return;
+    }
+    try {
+      const res = await fetch('/api/message', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message, toUsername }),
+      });
+      if (!res.ok) {
+        const errMsg = await res.json();
+        throw new Error(errMsg.msg || 'Failed to send message');
+      }
+
+      // Optionally, refetch messages to update the UI
+      const updated = await fetch('/api/messages', { credentials: 'include' });
+      const updatedMessages = await updated.json();
+      setReceivedMessages(updatedMessages);
+      setMessage('');
+      setToUsername('');
+    } catch (err) {
+      console.error(err);
+      alert(err.message);
+    }
+  }
+
     return( 
         <main> 
     <footer id="navigationList">   
@@ -48,7 +62,7 @@ export function Messages(){
           onChange={(e) => setMessage(e.target.value)}
         />    
       <br /> 
-      <input type="text" placeholder="Enter Username To Send" onChange={(e) => setUsername(e.target.value)}/>    
+      <input type="text" placeholder="Enter Username To Send" onChange={(e) => setToUsername(e.target.value)}/>    
       <br />   
       <button type="button" onClick={sendMessage}>Send Message</button>
       <br />
