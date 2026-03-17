@@ -1,13 +1,13 @@
 import React,{ useEffect, useState } from 'react';
-export function Login() {
+export function Login() { 
   //Login code will be handled with database 
   const [time, setTime] = useState('');
   const [date, setDate] = useState('');
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState(''); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
-  useEffect(() => { 
-  async function checkLogin() {
+  useEffect(() => {  
+  async function checkLogin() { 
     try {
       const res = await fetch('/api/user', {
         credentials: 'include',
@@ -16,7 +16,7 @@ export function Login() {
       if (res.ok) {
         const data = await res.json();
         setUsername(data.username);
-        setIsLoggedIn(true);
+        setIsLoggedIn(true); 
       }
     } catch (err) {
       console.error("Login check failed", err);
@@ -40,10 +40,11 @@ export function Login() {
     await fetch('/api/auth/logout', {
       method: 'DELETE',
       credentials: 'include', 
-    });
-    setIsLoggedIn(false);  
+    });  
     setUsername("");
     setPassword(""); 
+    setIsLoggedIn(false); 
+    window.location.reload(); 
   }
   async function createAccount(){
     const response = await fetch('/api/auth/create', {
@@ -51,12 +52,11 @@ export function Login() {
       credentials: 'include',
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify({ username, password }),
-    }); 
-    console.log(response.ok); 
-    if(response.ok){
+    });      
+    if(response.ok){ 
       const data = await response.json();  
       setUsername(data.username); 
-      setIsLoggedIn(true);
+      setIsLoggedIn(true); 
     }else{ 
       alert("User already exists!"); 
     }
@@ -67,13 +67,13 @@ export function Login() {
     credentials: 'include',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ username, password }),
-    });
+    });   
     if(response.ok){
       const data = await response.json(); 
-      setUsername(data.username);
+      setUsername(data.username); 
       setIsLoggedIn(true); 
     }else{
-      alert("Login failed"); 
+      alert("Login failed");     
     }
   }
 
@@ -85,17 +85,17 @@ export function Login() {
       <form onSubmit={(e) => e.preventDefault()}>     
         <div>
           <span style={{fontSize: '20px'}}>@</span>  
-          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn}/>   
+          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn} value={username}/>   
         </div>
         <br /> 
         <div>
-          <span>🔒</span>
-          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} />  
+          <span>🔒</span> 
+          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} value={password}/>  
         </div>  
         <br /> 
         {!isLoggedIn && <button type="button" onClick={userLogin}>Login</button>}          
         {!isLoggedIn && <button type="button" onClick={createAccount}>Create Account</button>} 
-        {isLoggedIn && <button type="button" onClick={Logout}>Logout</button>}  
+        {isLoggedIn && <button type="button" onClick={Logout}>Logout</button>}   
       </form>
       </div> 
     <footer id="navigationList">  
