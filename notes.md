@@ -197,6 +197,8 @@ app.get(/.*/, (req, res) => {
 app.listen(3000);
 ./deployService.sh -k ../developer.pem -h slimestartup.click -s startup  
 
+WRITING TESTS 
+expect().toBe() 
 ## Startup DB  
 Mongo DB calls then collections, and they are simply arrays (think JSON objects) 
 mongodb+srv://mhart:<db_password>@slimestartup.8wgs5rb.mongodb.net/?appName=SlimeStartup

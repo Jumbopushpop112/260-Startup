@@ -37,13 +37,13 @@ export function Login() {
    }, []); 
     
   async function Logout(){
-    await fetch('/api/auth/logout', {
+    await fetch('/api/auth/logout', { 
       method: 'DELETE',
       credentials: 'include', 
     });  
     setUsername("");
     setPassword(""); 
-    setIsLoggedIn(false); 
+    setIsLoggedIn(false);  
     window.location.reload(); 
   }
   async function createAccount(){
@@ -83,7 +83,7 @@ export function Login() {
           {isLoggedIn && <h1>Welcome, {username}!</h1>} 
           {!isLoggedIn && <h1>Welcome to Slime!</h1>}      
       <form onSubmit={(e) => e.preventDefault()}>     
-        <div>
+        <div> 
           <span style={{fontSize: '20px'}}>@</span>  
           <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn} value={username}/>   
         </div>
