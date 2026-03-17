@@ -77,8 +77,8 @@ export function Messages(){
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         />    
-      <br /> 
-      <input type="text" placeholder="Enter Username To Send" onChange={(e) => setToUsername(e.target.value)}/>    
+      <br />    
+      <input type="text" placeholder="Enter Username To Send" onChange={(e) => setToUsername(e.target.value)} value={toUsername}/>    
       <br />   
       <button type="button" onClick={sendMessage}>Send Message</button>
       <br />

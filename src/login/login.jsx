@@ -6,6 +6,7 @@ export function Login() {
   const [username, setUsername] = useState(''); 
   const [password, setPassword] = useState(''); 
   const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  
   useEffect(() => {  
   async function checkLogin() { 
     try {
@@ -14,7 +15,7 @@ export function Login() {
       });
 
       if (res.ok) {
-        const data = await res.json();
+        const data = await res.json();  
         setUsername(data.username);
         setIsLoggedIn(true); 
       }
@@ -70,10 +71,12 @@ export function Login() {
     });   
     if(response.ok){
       const data = await response.json(); 
+      window.location.reload(); 
       setUsername(data.username); 
-      setIsLoggedIn(true); 
+      setPassword(data.password);
+      setIsLoggedIn(true);    
     }else{
-      alert("Login failed");     
+      alert("Login failed");      
     }
   }
 
@@ -82,17 +85,21 @@ export function Login() {
       <div id="login"> 
           {isLoggedIn && <h1>Welcome, {username}!</h1>} 
           {!isLoggedIn && <h1>Welcome to Slime!</h1>}      
-      <form onSubmit={(e) => e.preventDefault()}>     
+      <form onSubmit={(e) => e.preventDefault()}>
+        {!isLoggedIn && (   
+          <>    
         <div> 
           <span style={{fontSize: '20px'}}>@</span>  
-          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)} disabled={isLoggedIn} value={username}/>   
+          <input type="text" placeholder="Username" className="btn btn-outline-primary" onChange={(e) => setUsername(e.target.value)}value={username}/>    
         </div>
         <br /> 
         <div>
           <span>🔒</span> 
-          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)} disabled={isLoggedIn} value={password}/>  
+          <input type="password" placeholder="Password" className="btn btn-outline-primary" onChange={(e) => setPassword(e.target.value)}value={password}/>  
         </div>  
         <br /> 
+        </>
+        )}
         {!isLoggedIn && <button type="button" onClick={userLogin}>Login</button>}          
         {!isLoggedIn && <button type="button" onClick={createAccount}>Create Account</button>} 
         {isLoggedIn && <button type="button" onClick={Logout}>Logout</button>}   
