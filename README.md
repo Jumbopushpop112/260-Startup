@@ -131,7 +131,7 @@ When testing deliverable:
 The default accounts created are b and m 
 username: b password: b
 username: m password: m 
-## 🚀 DB deliverable
+## 🚀 DB deliverable 
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 

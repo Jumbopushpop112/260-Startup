@@ -44,8 +44,7 @@ export function Login() {
     });  
     setUsername("");
     setPassword(""); 
-    setIsLoggedIn(false);  
-    window.location.reload(); 
+    setIsLoggedIn(false);   
   }
   async function createAccount(){
     const response = await fetch('/api/auth/create', {
@@ -76,7 +75,7 @@ export function Login() {
       setPassword(data.password);
       setIsLoggedIn(true);    
     }else{
-      alert("Login failed");      
+      alert("Login failed");       
     }
   }
 
