@@ -41,7 +41,7 @@ async function updateUserRemoveAuth(user) {
 
 module.exports = {
     getUser,
-    getUserByToken,
+    getUserByToken, 
     addUser,
     updateUser, 
     updateUserRemoveAuth 
