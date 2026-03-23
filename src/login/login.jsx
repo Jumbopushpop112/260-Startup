@@ -110,8 +110,7 @@ export function Login() {
       <br />  
       <a href="https://github.com/Jumbopushpop112/260-Startup" target="_blank">GitHub</a> 
       <br /> 
-      <br /> 
-       <input type="text" placeholder="3rd Party API will show suggested friends here" /> 
+      <br />   
        <br />   
       <time>{time}</time>
       <p>{date}</p>    
