@@ -4,17 +4,15 @@ const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
-const db = client.db('slime'); 
-const userCollection = db.collection('user')
-const messageCollection = db.collection('messages')
+const db = client.db('users'); 
+const userCollection = db.collection('user'); 
+userCollection.createIndex({ username: 1 }, { unique: true }); 
 
 //testing connection function
 (async function testConnection() { 
   try {
     await db.command({ ping: 1 });
     console.log(`Connect to database`); 
-    await addUser({ username: "test", password: "123" });
-    console.log("Test user added"); 
   } catch (ex) {
     console.log(`Unable to connect to database with ${url} because ${ex.message}`);
     process.exit(1); 

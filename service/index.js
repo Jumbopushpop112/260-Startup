@@ -5,8 +5,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
 const app = express();
-const authCookieName = 'token';
-let users = []; 
+const authCookieName = 'token';  
 // parse JSON first
 app.use(express.json()); 
 
@@ -77,9 +76,18 @@ async function createUser(username, password) {
 //find a user by whatever value we want (this can be an email, or a username)
 async function findUser(field, value) {
   if (!value){
-    return null;  
+    return null; 
   } 
-  return users.find((u) => u[field] === value);
+
+  if (field === 'username') {
+    return await db.getUser(value);
+  }
+
+  if (field === 'token') {
+    return await db.getUserByToken(value);
+  }
+
+  return null;
 }
 //verification function  
 const verifyAuth = async (req, res, next) => {

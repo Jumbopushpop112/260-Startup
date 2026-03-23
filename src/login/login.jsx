@@ -69,8 +69,7 @@ export function Login() {
     body: JSON.stringify({ username, password }),
     });   
     if(response.ok){
-      const data = await response.json(); 
-      window.location.reload(); 
+      const data = await response.json();  
       setUsername(data.username); 
       setPassword(data.password);
       setIsLoggedIn(true);    
