@@ -9,7 +9,7 @@ const userCollection = db.collection('user')
 const messageCollection = db.collection('messages')
 
 //testing connection function
-(async function testConnection() {
+(async function testConnection() { 
   try {
     await db.command({ ping: 1 });
     console.log(`Connect to database`); 
@@ -19,7 +19,7 @@ const messageCollection = db.collection('messages')
   }
 })();  
 
-function getUser(){
+function getUser(username){
   return userCollection.findOne({username: username});
 }
 
