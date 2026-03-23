@@ -28,11 +28,19 @@ apiRouter.post('/auth/create', async (req, res) => {
   if (await findUser('username', req.body.username)) {
     res.status(409).send({ msg: 'Existing user' }); 
   } else { 
+  try {
     const user = await createUser(req.body.username, req.body.password);  
     setAuthCookie(res, user.token); 
     res.send({ username: user.username });
+  } catch (err) {
+  if (err.code === 11000) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    res.status(500).send({ msg: 'Error creating user' });
   }
-});
+  }
+  }
+}); 
 
 // GetAuth login an existing user
 apiRouter.post('/auth/login', async (req, res) => {
