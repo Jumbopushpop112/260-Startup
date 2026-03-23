@@ -38,7 +38,7 @@ apiRouter.post('/auth/create', async (req, res) => {
   } else {
     res.status(500).send({ msg: 'Error creating user' });
   }
-  }
+  } 
   }
 }); 
 
@@ -49,6 +49,7 @@ apiRouter.post('/auth/login', async (req, res) => {
     if (await bcrypt.compare(req.body.password, user.password)) {
       user.token = uuid.v4();
       setAuthCookie(res, user.token); 
+      await db.updateUser(user); 
       res.send({ username: user.username});   
       return;  
     } 
@@ -60,7 +61,7 @@ apiRouter.post('/auth/login', async (req, res) => {
 apiRouter.delete('/auth/logout', async (req, res) => {
   const user = await findUser('token', req.cookies[authCookieName]);
   if (user) {   
-    delete user.token; 
+     await db.updateUserRemoveAuth(user); 
   }
   res.clearCookie(authCookieName); 
   res.status(204).end();
@@ -150,7 +151,7 @@ apiRouter.post('/message', verifyAuth, async (req, res) => {
 
   // Add message to recipient's messages
   recipient.messages.push(`${sender.username}: ${message}`); 
-
+  await db.updateUser(recipient); 
   res.send({ success: true }); 
 });
 
