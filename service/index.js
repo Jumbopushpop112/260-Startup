@@ -1,3 +1,4 @@
+const db = require('./database');
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
 const express = require('express');  
 const cookieParser = require('cookie-parser');
@@ -69,8 +70,8 @@ async function createUser(username, password) {
     joinDate: now.toLocaleDateString(), 
     token: uuid.v4(),
   };
-  users.push(user); 
-  return user;
+  await db.addUser(user);
+  return user; 
 }
 
 //find a user by whatever value we want (this can be an email, or a username)

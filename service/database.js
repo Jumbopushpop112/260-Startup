@@ -13,6 +13,8 @@ const messageCollection = db.collection('messages')
   try {
     await db.command({ ping: 1 });
     console.log(`Connect to database`); 
+    await addUser({ username: "test", password: "123" });
+    console.log("Test user added"); 
   } catch (ex) {
     console.log(`Unable to connect to database with ${url} because ${ex.message}`);
     process.exit(1); 
