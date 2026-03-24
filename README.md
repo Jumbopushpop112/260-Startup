@@ -132,11 +132,11 @@ The default accounts created are b and m
 username: b password: b
 username: m password: m 
 ## 🚀 DB deliverable 
-
+ 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [X] **Stores data in MongoDB** - User data is stored in the the form of a JSON object containg messages, join date, id, username and password.
+- [X] **Stores credentials in MongoDB** - User's credentials are stored in the database. The username is part of the JSON object, and the hashed password is stored as well.  
 
 ## 🚀 WebSocket deliverable 
  
