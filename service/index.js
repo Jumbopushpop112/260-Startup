@@ -64,7 +64,7 @@ apiRouter.delete('/auth/logout', async (req, res) => {
      await db.updateUserRemoveAuth(user); 
   }
   res.clearCookie(authCookieName); 
-  res.status(204).end();
+  res.status(204).end(); 
 });
   
 //create user 
@@ -74,7 +74,7 @@ async function createUser(username, password) {
   const user = {
     username: username,
     password: passwordHash,
-    messages: [], 
+    messages: [],  
     joinDate: now.toLocaleDateString(), 
     token: uuid.v4(),
   };
@@ -172,7 +172,7 @@ function setAuthCookie(res, authToken) {
     maxAge: 1000 * 60 * 60 * 24 * 365,
     secure: false, 
     httpOnly: true,
-    sameSite: 'strict', 
+    sameSite: 'lax',  
   }); 
 }
  

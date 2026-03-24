@@ -5,7 +5,7 @@ export function Messages(){
     const [message, setMessage] = useState('');
     const [toUsername, setToUsername] = useState(''); 
     const [receivedMessages, setReceivedMessages] = useState([]);
-    const [username, setUsername] = useState('');
+    const [username, setUsername] = useState(''); 
 
     useEffect(() => {
     async function fetchUser() {

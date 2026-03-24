@@ -74,7 +74,7 @@ export function Login() {
       setPassword(data.password);
       setIsLoggedIn(true);    
     }else{
-      alert("Login failed");       
+      alert("Failed to login. Check username and password");         
     }
   }
 
