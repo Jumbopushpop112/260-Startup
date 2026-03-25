@@ -66,10 +66,12 @@ export function Messages(){
       alert(err.message); 
     }
   }
-  const messagesToShow = receivedMessages.map(msg => {
+const messagesToShow = receivedMessages
+  .filter(msg => msg.to === username)
+  .map(msg => {
     const time = new Date(msg.timestamp).toLocaleTimeString();
-    return `[${time}] ${msg.from} → ${msg.to}: ${msg.text}`; 
-  });     
+    return `[${time}] ${msg.from}: ${msg.text}`;
+  });    
     return( 
         <main> 
     <footer id="navigationList">   
