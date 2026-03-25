@@ -135,8 +135,19 @@ username: m password: m
  
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [X] **Stores data in MongoDB** - User data is stored in the the form of a JSON object containg messages, join date, id, username and password.
-- [X] **Stores credentials in MongoDB** - User's credentials are stored in the database. The username is part of the JSON object, and the hashed password is stored as well.  
+- [X] **Stores data in MongoDB** - User data is stored in the the form of a JSON object containg messages, join date, id, username and password. 
+- [X] **Stores credentials in MongoDB** - User's credentials are stored in the database. The username is part of the JSON object, and the hashed password is stored as well. When the user logs in, the values are retrieved from the database
+Default Accounts Used to Text:
+Username - cosmo
+Password - cougar
+
+Username - matthew
+Password - hart
+
+Username - byu
+Password - cougars
+
+Give these accounts a test and message. Keep in the mind, the website is case sensitive. 
 
 ## 🚀 WebSocket deliverable 
  

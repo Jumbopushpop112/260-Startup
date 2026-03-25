@@ -6,6 +6,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 const client = new MongoClient(url);
 const db = client.db('users'); 
 const userCollection = db.collection('userData');  
+const messageCollection = db.collection('messages');
 userCollection.createIndex({ username: 1 }, { unique: true }); 
 
 //testing connection function
@@ -31,6 +32,10 @@ async function addUser(user) {
   await userCollection.insertOne(user); 
 } 
 
+async function addMessage(message){
+  await messageCollection.insertOne(message);
+}
+
 async function updateUser(user) {
   await userCollection.updateOne({ username: user.username }, { $set: user }); 
 }
@@ -38,11 +43,23 @@ async function updateUser(user) {
 async function updateUserRemoveAuth(user) {
   await userCollection.updateOne({ username: user.username }, { $unset: { token: 1 } }); 
 }
-
+async function getMessagesForUser(username) {
+  return messageCollection 
+    .find({
+      $or: [
+        { from: username },
+        { to: username }
+      ]
+    })
+    .sort({ timestamp: -1 })
+    .toArray();
+}
 module.exports = {
     getUser,
     getUserByToken, 
     addUser,
+    addMessage, 
     updateUser, 
-    updateUserRemoveAuth 
+    updateUserRemoveAuth,
+    getMessagesForUser
 }

@@ -73,8 +73,7 @@ async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
     username: username,
-    password: passwordHash,
-    messages: [],  
+    password: passwordHash,  
     joinDate: now.toLocaleDateString(), 
     token: uuid.v4(),
   };
@@ -116,7 +115,8 @@ apiRouter.get('/messages', verifyAuth, async(req, res) => {
      return res.status(401).send({ msg: 'Unauthorized' });  
   }
   // Expecting req.body.message to contain the new message
-  res.send(user.messages);
+  const messages = await db.getMessagesForUser(user.username);
+  res.send(messages); 
 });
  
 apiRouter.post('/user', verifyAuth, async (req, res) => {
@@ -135,7 +135,7 @@ apiRouter.get('/user', verifyAuth, async (req, res) => {
   if (!user) return res.status(401).send({ msg: 'Unauthorized' }); 
   res.send({
     username: user.username,
-    joinDate: user.joinDate,
+    joinDate: user.joinDate, 
   }); 
 });
 //submitMessages
@@ -149,9 +149,13 @@ apiRouter.post('/message', verifyAuth, async (req, res) => {
   const recipient = await findUser('username', toUsername);
   if (!recipient) return res.status(404).send({ msg: 'Recipient not found' });
 
-  // Add message to recipient's messages
-  recipient.messages.push(`${sender.username}: ${message}`); 
-  await db.updateUser(recipient); 
+  // Add message to recipient's messages 
+  await db.addMessage({
+    from: sender.username,
+    to: toUsername,
+    text: message,
+    timestamp: new Date() 
+  });
   res.send({ success: true }); 
 });
 

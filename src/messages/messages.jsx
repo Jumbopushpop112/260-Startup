@@ -61,12 +61,15 @@ export function Messages(){
       setReceivedMessages(updatedMessages);
       setMessage('');
       setToUsername('');
-    } catch (err) {
+    } catch (err) { 
       console.error(err);  
-      alert(err.message);
+      alert(err.message); 
     }
   }
-  const messagesToShow = receivedMessages.filter(msg => !msg.startsWith('To') && !msg.startsWith(username));   
+  const messagesToShow = receivedMessages.map(msg => {
+    const time = new Date(msg.timestamp).toLocaleTimeString();
+    return `[${time}] ${msg.from} → ${msg.to}: ${msg.text}`; 
+  });     
     return( 
         <main> 
     <footer id="navigationList">   

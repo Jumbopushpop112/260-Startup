@@ -199,7 +199,7 @@ app.listen(3000);
 
 WRITING TESTS 
 expect().toBe()    
-## Startup DB   
+## Startup DB    
 Mongo DB calls then collections, and they are simply arrays (think JSON objects) 
 mongodb+srv://mhart:<db_password>@slimestartup.8wgs5rb.mongodb.net/?appName=SlimeStartup
 In the future, make sure to always require my db in a variable, and call from the backend 
