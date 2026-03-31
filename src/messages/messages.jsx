@@ -27,12 +27,30 @@ export function Messages(){
       if(!username){
         return;
       }
-      const socket = new WebSocket(`ws://${window.location.host}`);
-      setWs(socket);
+      const protocol = window.location.protocol === 'https:' ? 'wss' : 'ws';
+      const socket = new WebSocket(`${protocol}://${window.location.host}/ws`); 
+      setWs(socket); 
       socket.onopen = () =>{
         console.log("Connected to the websocket");
       };
-    })
+      socket.onmessage = (event) => {
+        try {
+          const newMessage = JSON.parse(event.data);
+
+          // Only show messages sent TO this user
+          if (newMessage.to === username) {
+            setReceivedMessages((prev) => [...prev, newMessage]);
+          }
+        } catch (err) {
+          console.error('Invalid WS message', err);
+        }
+      };
+      socket.onclose = () => {
+          console.log('WebSocket disconnected');
+      };  
+      return () => socket.close();
+    }, [username]); 
+  
     useEffect(() => {  
     async function fetchMessages() {
       try {
@@ -68,14 +86,19 @@ export function Messages(){
         const errMsg = await res.json();
         throw new Error(errMsg.msg || 'Failed to send message');
       } 
-      const updated = await fetch('/api/messages', { credentials: 'include' });
-      const updatedMessages = await updated.json();
-      setReceivedMessages(updatedMessages);
+      if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify({
+            from: username,
+            to: toUsername,
+            text: message,
+            timestamp: new Date()
+          }));
+        } 
       setMessage('');
       setToUsername('');
     } catch (err) { 
       console.error(err);  
-      alert(err.message); 
+      alert(err.message);  
     }
   }
 const messagesToShow = receivedMessages

@@ -181,12 +181,12 @@ function setAuthCookie(res, authToken) {
   }); 
 }
  
-const server = app.listen(port, () => {  
-  console.log(`Listening on port ${port}`);
+const server = app.listen(port,'0.0.0.0',() => {   
+  console.log(`Listening on port ${port}`); 
 }); 
 
 //websocket object
-const socketServer = new WebSocketServer({server});     
+const socketServer = new WebSocketServer({server});      
 socketServer.on('connection', (socket) => {
   socket.isAlive = true; 
 
@@ -194,7 +194,7 @@ socketServer.on('connection', (socket) => {
   socket.on('message', function message(data) {
     socketServer.clients.forEach(function each(client) {
       if (client !== socket && client.readyState === WebSocket.OPEN) {
-        client.send(data); 
+        client.send(data);  
       }
     });
   });  
