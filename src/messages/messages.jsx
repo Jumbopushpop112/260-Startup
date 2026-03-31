@@ -6,6 +6,7 @@ export function Messages(){
     const [toUsername, setToUsername] = useState(''); 
     const [receivedMessages, setReceivedMessages] = useState([]);
     const [username, setUsername] = useState(''); 
+    const[ws, setWs] = useState(null);
 
     useEffect(() => {
     async function fetchUser() {
@@ -21,6 +22,17 @@ export function Messages(){
     }
       fetchUser();
     }, []);
+
+    useEffect(() =>{
+      if(!username){
+        return;
+      }
+      const socket = new WebSocket(`ws://${window.location.host}`);
+      setWs(socket);
+      socket.onopen = () =>{
+        console.log("Connected to the websocket");
+      };
+    })
     useEffect(() => {  
     async function fetchMessages() {
       try {
@@ -35,7 +47,7 @@ export function Messages(){
         setReceivedMessages(messages);
       } catch (err) {
         console.error(err);
-      }
+      } 
     }
     fetchMessages();
   }, []);
