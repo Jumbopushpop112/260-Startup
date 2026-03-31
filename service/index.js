@@ -207,7 +207,7 @@ setInterval(() => {
     if (client.isAlive === false) return client.terminate();
 
     client.isAlive = false;
-    client.ping();
+    client.ping(); 
   });
 }, 10000);   
 
