@@ -1,4 +1,5 @@
 const db = require('./database');
+const { WebSocketServer } = require('ws'); 
 const port = process.argv.length > 2 ? process.argv[2] : 4000; 
 const express = require('express');  
 const cookieParser = require('cookie-parser');
@@ -73,7 +74,7 @@ async function createUser(username, password) {
   const passwordHash = await bcrypt.hash(password, 10);
   const user = {
     username: username,
-    password: passwordHash,  
+    password: passwordHash,   
     joinDate: now.toLocaleDateString(), 
     token: uuid.v4(),
   };
@@ -83,7 +84,7 @@ async function createUser(username, password) {
 
 //find a user by whatever value we want (this can be an email, or a username)
 async function findUser(field, value) {
-  if (!value){
+  if (!value){ 
     return null; 
   } 
 
