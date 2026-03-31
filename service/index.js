@@ -181,6 +181,33 @@ function setAuthCookie(res, authToken) {
   }); 
 }
  
-app.listen(port, () => {  
+const server = app.listen(port, () => {  
   console.log(`Listening on port ${port}`);
 }); 
+
+//websocket object
+const socketServer = new WebSocketServer({server});     
+socketServer.on('connection', (socket) => {
+  socket.isAlive = true; 
+
+  // Forward messages to everyone except the sender
+  socket.on('message', function message(data) {
+    socketServer.clients.forEach(function each(client) {
+      if (client !== socket && client.readyState === WebSocket.OPEN) {
+        client.send(data); 
+      }
+    });
+  });  
+  socket.on('pong', () => {
+    socket.isAlive = true;
+  });
+}); 
+setInterval(() => {
+  socketServer.clients.forEach(function each(client) {
+    if (client.isAlive === false) return client.terminate();
+
+    client.isAlive = false;
+    client.ping();
+  });
+}, 10000);   
+
