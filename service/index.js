@@ -186,7 +186,10 @@ const server = app.listen(port,'0.0.0.0',() => {
 }); 
 
 //websocket object
-const socketServer = new WebSocketServer({server});      
+const socketServer = new WebSocketServer({
+  server,
+  path: '/ws' 
+});    
 socketServer.on('connection', (socket) => {
   socket.isAlive = true; 
 
