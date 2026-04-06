@@ -33,18 +33,20 @@ export function Messages(){
       socket.onopen = () =>{
         console.log("Connected to the websocket");
       };
-      socket.onmessage = (event) => {
-        try {
-          const newMessage = JSON.parse(event.data);
-
-          // Only show messages sent TO this user
-          if (newMessage.to === username) {
-            setReceivedMessages((prev) => [...prev, newMessage]);
+      socket.onmessage = async (event) => {
+      try {
+          let data = event.data;
+          if (data instanceof Blob) {
+            data = await data.text();
           }
-        } catch (err) {
-          console.error('Invalid WS message', err);
-        }
-      };
+          const newMessage = JSON.parse(data);
+    if (newMessage.to === username) {
+      setReceivedMessages((prev) => [...prev, newMessage]);
+    } 
+  } catch (err) {
+    console.error('Invalid WS message', err);
+  }
+};
       socket.onclose = () => {
           console.log('WebSocket disconnected');
       };  
