@@ -114,14 +114,12 @@ const messagesToShow = receivedMessages
   });    
     return( 
         <main> 
-    <footer id="navigationList">   
-      <input type="text" placeholder="Websocket Data" />
-      <br />    
+    <footer id="navigationList">     
       <textarea
           className="messages"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-        />    
+        />     
       <br />    
       <input type="text" placeholder="Enter Username To Send" onChange={(e) => setToUsername(e.target.value)} value={toUsername}/>    
       <br />   
