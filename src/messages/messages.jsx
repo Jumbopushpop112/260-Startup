@@ -105,6 +105,7 @@ export function Messages(){
   }
 const messagesToShow = receivedMessages
   .filter(msg => msg.to === username)
+  .sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp)) 
   .map(msg => {
     const dateObj = new Date(msg.timestamp);
     const time = new Date(msg.timestamp).toLocaleTimeString();
