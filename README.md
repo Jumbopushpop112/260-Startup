@@ -156,5 +156,5 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
 - [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
+- [X] **WebSocket data displayed** - The messages are displayed in the messages box when sent to each other. The websocket connection allows the messages to appear as they are sent right away.  
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.

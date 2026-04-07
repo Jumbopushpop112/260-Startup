@@ -194,7 +194,7 @@ app.get(/.*/, (req, res) => {
  res.send('<h1>Hello Express!</h1>');
 });
 
-app.listen(3000);
+app.listen(3000); 
 ./deployService.sh -k ../developer.pem -h slimestartup.click -s startup  
 
 WRITING TESTS 
