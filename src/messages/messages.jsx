@@ -106,8 +106,10 @@ export function Messages(){
 const messagesToShow = receivedMessages
   .filter(msg => msg.to === username)
   .map(msg => {
+    const dateObj = new Date(msg.timestamp);
     const time = new Date(msg.timestamp).toLocaleTimeString();
-    return `[${time}] ${msg.from}: ${msg.text}`;
+    const date = dateObj.toLocaleDateString(); 
+    return `[${time}] ${date} ${msg.from}: ${msg.text}`;
   });    
     return( 
         <main> 
