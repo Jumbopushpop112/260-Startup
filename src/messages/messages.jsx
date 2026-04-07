@@ -95,10 +95,10 @@ export function Messages(){
             text: message,
             timestamp: new Date()
           }));
-        } 
+        }  
       setMessage('');
       setToUsername('');
-    } catch (err) { 
+    } catch (err) {  
       console.error(err);  
       alert(err.message);  
     }
