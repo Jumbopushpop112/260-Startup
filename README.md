@@ -154,7 +154,7 @@ Give these accounts a test and message. Keep in the mind, the website is case se
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
+- [X] **Frontend makes WebSocket connection** - When new messages come through, the websocket connects and puts the new message into the list of received messages. 
+- [X] **Data sent over WebSocket connection** - Message JSON Object is sent over the websocket connection and dealt with in the messages.jsx file, which reads in the JSON obejct and parses the contents it contains to create a displayable message.
 - [X] **WebSocket data displayed** - The messages are displayed in the messages box when sent to each other. The websocket connection allows the messages to appear as they are sent right away.  
 - [ ] **Application is fully functional** - I did not complete this part of the deliverable.
